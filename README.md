@@ -3,7 +3,7 @@
 ## MERN STACK E-COMMERCE
 
 
-**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir. Proje linki: [Bigbang](Bigbang)
+**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir. Proje linki: [Bigbang](https://bigbang-weld.vercel.app)
 
 ## 🚀 Neler Yapabilirsiniz?
 
