@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        name: 'Matter Store',
+        name: 'Bigbang',
     },
     port: process.env.PORT || 8080,
     database: {
