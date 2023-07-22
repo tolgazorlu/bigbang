@@ -1,8 +1,8 @@
-import ComingSoon from "./pages/ComingSoon"
+import Home from "./components/pages/Home"
 
 const App = () => {
   return (
-    <ComingSoon />
+    <Home />
   )
 }
 

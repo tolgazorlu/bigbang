@@ -1,6 +1,6 @@
 
 import Lottie from 'lottie-react';
-import animationData from '../../assets/lotties/earth.json'
+import animationData from '../../../assets/lotties/earth.json'
 
 const ComingSoon = () => {
 
