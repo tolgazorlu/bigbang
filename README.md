@@ -2,11 +2,11 @@
  BIGBANG
 </h1>
 
-####<span style='color: #ffcc00'>Uyarı!</span>
+<span style='color: #ffcc00; font-size: 25px; font-weight: bold'>Uyarı!</span>
 Bu web sayfası MERN STACK öğrenmek amacıyla yaptığım hayali bir web sayfasıdır.
 
 
-##Introduction
+<h3>Introduction</h3>
 
 Humanity had begun to satisfy its fascination with stars and planets by traveling to the places they had only dreamed of. As spaceships navigated among celestial bodies, the infinite beauties of the universe unfolded before people's eyes. This enchanting journey gave rise to the birth of a new digital platform: "Bigbang"!
 
@@ -20,11 +20,12 @@ Bigbang also managed all the necessary legal processes for purchasing planets.
 
 So, gather your courage and take a step into Bigbang to discover an extraordinary place in the universe! The time has come to explore your own magical world and take a step towards the universe you have always dreamed of!
 
-####You can visit this project with [DEMO LINK](https://bigbang-weld.vercel.app)
+<h3>You can visit this project with</h3>
+#### [DEMO LINK](https://bigbang-weld.vercel.app)
 
 We implemented the **BigBang** application using **React, NodeJS, Express, MongoDB, Typescript, Tailwind** technologies. **Bigbang** is an imaginary e-commerce project where you can buy planets, stars, meteorites from every point of the universe, somewhere in the future.
 
-##Türkçe
+<h3>Türkçe</h3>
 
 İnsanlık, yıldızlara ve gezegenlere olan hayranlığını hayal ettiği yerlere seyahat ederek tatmin etmeye başlamıştı. Uzay gemileri gök cisimleri arasında gezinirken, evrenin sonsuz güzellikleri insanların gözleri önünde açılıyordu. Bu büyülü yolculuk, yeni bir dijital platformun doğuşuna vesile oldu: "Bigbang"!
 
@@ -37,6 +38,8 @@ Bigbang'deki müşteriler, her gezegenin detaylı açıklamalarını, benzersiz 
 Bigbang, gezegenleri satın almak için gerekli tüm yasal süreçleri de yönetiyor.
 
 Öyleyse, cesaretinizi toplayın ve evrende eşsiz bir yer bulmak için Bigbang’e adım atın! Kendi büyülü dünyanızı keşfetmenin ve hayal ettiğiniz evrene doğru bir adım atmanın zamanı geldi!
+
+<h2>BigBang - MERN STACK E-TİCARET PROJESİ</h2>
 
 **React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir. 
 
