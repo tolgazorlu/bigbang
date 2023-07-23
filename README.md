@@ -5,7 +5,6 @@
 <span style='color: #ffcc00; font-size: 25px; font-weight: bold'>Uyarı!</span>
 Bu web sayfası MERN STACK öğrenmek amacıyla yaptığım hayali bir web sayfasıdır.
 
-
 <h3>Introduction</h3>
 
 Humanity had begun to satisfy its fascination with stars and planets by traveling to the places they had only dreamed of. As spaceships navigated among celestial bodies, the infinite beauties of the universe unfolded before people's eyes. This enchanting journey gave rise to the birth of a new digital platform: "Bigbang"!
@@ -20,7 +19,7 @@ Bigbang also managed all the necessary legal processes for purchasing planets.
 
 So, gather your courage and take a step into Bigbang to discover an extraordinary place in the universe! The time has come to explore your own magical world and take a step towards the universe you have always dreamed of!
 
-##[You can visit this project with this link](https://bigbang-weld.vercel.app)
+[You can visit this project with this link](https://bigbang-weld.vercel.app)
 
 We implemented the **BigBang** application using **React, NodeJS, Express, MongoDB, Typescript, Tailwind** technologies. **Bigbang** is an imaginary e-commerce project where you can buy planets, stars, meteorites from every point of the universe, somewhere in the future.
 
@@ -40,7 +39,7 @@ Bigbang, gezegenleri satın almak için gerekli tüm yasal süreçleri de yönet
 
 <h2>BigBang - MERN STACK E-TİCARET PROJESİ</h2>
 
-**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir. 
+**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir.
 
 ## 🚀 Özellikler
 
@@ -72,31 +71,15 @@ Bigbang, gezegenleri satın almak için gerekli tüm yasal süreçleri de yönet
     <td><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/></td>
     <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/></td>
     <td><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/></td> <td><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/></td>
-    <td><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-    "/></td>
-    <td><img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white
-    "/></td>
-     <td><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
-    "/></td>
-    <td><img src="https://img.shields.io/badge/json%20web%20tokens-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink
-    "/></td>
-    <td><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
-    "/></td>
-    <td><img src="https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white
-    "/></td>
-    <td><img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white
-    "/></td>
-    <td><img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E
-    "/></td>
-    <td><img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white
-    "/></td>
-   
-
-    
-
-
-    
-    
+    <td><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/></td>
+    <td><img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white"/></td>
+     <td><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/></td>
+    <td><img src="https://img.shields.io/badge/json%20web%20tokens-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink"/></td>
+    <td><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/></td>
+    <td><img src="https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white"/></td>
+    <td><img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white"/></td>
+    <td><img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"/></td>
+    <td><img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/></td>
   </tr>
 
 ## 🤝 Katkıda Bulunma
