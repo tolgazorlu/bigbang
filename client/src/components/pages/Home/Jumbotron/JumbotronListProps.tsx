@@ -5,5 +5,5 @@ export interface StepProps {
 }
 
 export interface ContentListProps {
-    content: StepProps[];
+    content: StepProps;
 }

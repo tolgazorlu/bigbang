@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ContentListProps} from './JumbotronListProps'
+import { ContentListProps } from './JumbotronListProps'
 
 
 const JumbotronCard = ({content} : ContentListProps) => {

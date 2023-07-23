@@ -1,4 +1,3 @@
-import React from "react";
 import Lottie from 'lottie-react';
 import animationData from '../../../assets/lotties/infinity.json'
 
@@ -10,7 +9,7 @@ const Footer = () => {
         <p>
           BIGBANG TEAM
           <br />
-          Providing reliable tech since 1992
+          Providing reliable tech since 2123
         </p>
       </div>
       <div>

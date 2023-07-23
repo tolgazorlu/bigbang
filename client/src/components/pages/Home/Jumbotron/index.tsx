@@ -24,13 +24,6 @@ const contents = [
 const Jumbotron = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
-      {/* <div className="px-4 mx-auto max-w-screen-xl lg:py-16">
-        <JumbotronCard content={contents[0]} />
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
-          <JumbotronCard content={contents[1]} />
-          <JumbotronCard content={contents[2]} />
-        </div>
-      </div> */}
       <div className="px-4 mx-auto max-w-screen-xl lg:py-16">
         <JumbotronCard content={contents[0]} />
         <div className="grid md:grid-cols-2 gap-8 mt-8">
