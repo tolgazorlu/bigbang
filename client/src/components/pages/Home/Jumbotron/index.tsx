@@ -6,18 +6,30 @@ const contents = [
       title: "Register for Bigbang!",
       detail:
         "Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers.",
+      button: {
+        title: 'Login',
+        link: '/login'
+      }
     },
     {
       step: "Step 2",
       title: "Look Bigbang Products!",
       detail:
         "Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers.",
+        button: {
+          title: 'Shop',
+          link: '/shop'
+        }
     },
     {
       step: "Step 3",
       title: "Enjoy Your New Space Stuffs!",
       detail:
         "Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers.",
+        button: {
+          title: "Let's use",
+          link: '/about'
+        }
     },
   ];
 

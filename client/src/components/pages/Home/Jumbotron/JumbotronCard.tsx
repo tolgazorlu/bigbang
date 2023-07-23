@@ -6,7 +6,6 @@ const JumbotronCard = ({content} : ContentListProps) => {
   return (
     <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-8">
             <a
-              href="#"
               className="bg-purple-100 text-purple-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-purple-400 mb-2"
             >
               {content.step}
@@ -18,8 +17,10 @@ const JumbotronCard = ({content} : ContentListProps) => {
               {content.detail}
             </p>
             <a
+              href={content.button.link}
               className="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center"
             >
+              {content.button.title}
               <svg
                 className="w-3.5 h-3.5 ml-2"
                 aria-hidden="true"
@@ -45,7 +46,8 @@ JumbotronCard.propTypes = {
         PropTypes.shape({
         step: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        detail: PropTypes.string.isRequired
+        detail: PropTypes.string.isRequired,
+        button: PropTypes.object.isRequired
     })).isRequired
 }
 
