@@ -1,4 +1,4 @@
-![](https://github.com/tolgazorlu/bigbang/blob/main/bigbang-banner.png)
+![](https://github.com/tolgazorlu/bigbang/blob/main/bigbang-black.png)
 
 <span style='color: #ffcc00; font-size: 25px; font-weight: bold'>Uyarı!</span>
 Bu web sayfası MERN STACK öğrenmek amacıyla yaptığım hayali bir web sayfasıdır.
