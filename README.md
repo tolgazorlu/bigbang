@@ -1,6 +1,4 @@
-<h1 style="text-align: center; font-size: 72px font-family: ">
- BIGBANG
-</h1>
+![](https://github.com/tolgazorlu/bigbang/blob/main/bigbang-banner.png)
 
 <span style='color: #ffcc00; font-size: 25px; font-weight: bold'>Uyarı!</span>
 Bu web sayfası MERN STACK öğrenmek amacıyla yaptığım hayali bir web sayfasıdır.
