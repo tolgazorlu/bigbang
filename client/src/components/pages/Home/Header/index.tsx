@@ -1,14 +1,14 @@
-import React from 'react'
-import Navbar from '../../../layouts/Navbar'
-import Hero from './Hero'
+import React from "react";
+import Navbar from "../../../layouts/Navbar";
+import Hero from "./Hero";
+import Parallax from "../Parallax.tsx";
 
 const Header = () => {
   return (
-    <div className='h-screen'>
-        <Navbar />
-        <Hero />
+    <div>
+      <Parallax />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

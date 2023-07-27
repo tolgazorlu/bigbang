@@ -1,17 +1,30 @@
-import React from "react";
-import Lottie from 'lottie-react'
-import animationData from '../../../assets/lotties/infinity.json'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navbarLinks = [
-    { title: "Home" },
-    { title: "Shop" },
-    { title: "About" },
-    { title: "Contact" },
+    { title: "Home", link: "/" },
+    { title: "Shop", link: "/shop" },
+    { title: "About", link: "/about" },
+    { title: "Contact", link: "/contact" },
   ];
 
+  const [colorChange, setColorChange] = useState(false);
+
+  useEffect(() => {
+    const changeNavbarColor = () => {
+      if(window.scrollY >= 80){
+        setColorChange(true)
+      }
+      else{
+        setColorChange(false)
+      }
+    };
+    window.addEventListener('scroll', changeNavbarColor);
+  }, [])
+
   return (
-    <div className="navbar bg-base-100 px-20">
+    <nav className={colorChange ? 'colorChange navbar md:px-24 z-20 font-space bg-black fixed' : 'navbar md:px-24 fixed z-20 font-space '}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,7 +33,7 @@ const Navbar = () => {
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="white"
             >
               <path
                 strokeLinecap="round"
@@ -32,32 +45,42 @@ const Navbar = () => {
           </label>
           {navbarLinks.map((item, index) => {
             return (
-              <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" key={index}>
+              <ul
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                key={index}
+              >
                 <li>
-                  <a>{item.title}</a>
+                  <div className="text-white hover:bg-white hover:text-black">
+                    {<Link to={item.link}>{item.title}</Link>}
+                  </div>
                 </li>
               </ul>
             );
           })}
         </div>
-        <Lottie className='w-16' animationData={animationData}/>
-        <a className="btn btn-ghost btn-sm normal-case text-xl">bigbang</a>
+        <a className="btn btn-ghost btn-sm normal-case md:text-xl text-white">
+          bigbang
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         {navbarLinks.map((item, index) => {
           return (
             <ul className="menu menu-horizontal px-1" key={index}>
               <li>
-                <a>{item.title}</a>
+                <div className="text-white hover:bg-white hover:text-black">
+                  <Link to={item.link}>{item.title}</Link>
+                </div>
               </li>
             </ul>
           );
         })}
       </div>
       <div className="navbar-end">
-        <a className="btn btn-sm btn-outline">Login</a>
+        <a className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4">
+          Login
+        </a>
       </div>
-    </div>
+    </nav>
   );
 };
 

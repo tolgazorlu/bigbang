@@ -3,7 +3,7 @@ import animationData from '../../../assets/lotties/infinity.json'
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 text-base-content">
+    <footer className="footer p-10 text-slate-400">
       <div>
         <Lottie className='w-24' animationData={animationData}/>
         <p>

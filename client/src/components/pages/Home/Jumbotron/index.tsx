@@ -35,7 +35,7 @@ const contents = [
 
 const Jumbotron = () => {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="">
       <div className="px-4 mx-auto max-w-screen-xl lg:py-16">
         <JumbotronCard content={contents[0]} />
         <div className="grid md:grid-cols-2 gap-8 mt-8">
