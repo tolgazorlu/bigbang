@@ -1,4 +1,4 @@
-import Parallax from "../Parallax.tsx";
+import Parallax from "../Parallax.tsx/index.tsx";
 
 const Header = () => {
   return (

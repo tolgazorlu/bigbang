@@ -1,9 +1,9 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-import StarsImage from "../../../../assets/parallax/stars.png";
-import NeutronImage from "../../../../assets/parallax/neutron.png";
-import GroundImage from "../../../../assets/parallax/ground.png";
-import AstronoutImage from "../../../../assets/parallax/astronaut.png";
+import StarsImage from "../../../assets/parallax/stars.png";
+import NeutronImage from "../../../assets/parallax/neutron.png";
+import GroundImage from "../../../assets/parallax/ground.png";
+import AstronoutImage from "../../../assets/parallax/astronaut.png";
 import Jumbotron from "../Jumbotron";
 import Footer from "../../../layouts/Footer";
 import Navbar from "../../../layouts/Navbar";

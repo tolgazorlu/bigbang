@@ -1,4 +1,4 @@
-import ParallaxPage from "./Parallax.tsx";
+import ParallaxPage from "./Parallax.tsx/index.tsx";
 const Home = () => {
   return (
     <>
