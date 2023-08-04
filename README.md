@@ -6,7 +6,7 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
 
 [You can visit this project with this link! (Projeyi bu linkten ziyaret edebilirsiniz!)](https://bigbang-weld.vercel.app)
 
-![](https://github.com/tolgazorlu/bigbang/blob/main/bigbang-black.png)
+![](https://raw.githubusercontent.com/tolgazorlu/bigbang/main/space%20commerce.png)
 
 <h3>Introduction</h3>
 
