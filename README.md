@@ -55,7 +55,7 @@ Bigbang, gezegenleri satın almak için gerekli tüm yasal süreçleri de yönet
   `npm install`
   `npm start`
 
-<h2> 🛠️ &nbsp;Kullanılan Teknolojiler</h2>
+<h2> 🛠️ &nbsp;Technologies</h2>
 
 <p align="center">
   <a>
@@ -82,8 +82,8 @@ Bigbang, gezegenleri satın almak için gerekli tüm yasal süreçleri de yönet
   <a><img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/></a>
 </p>
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contribute to the project
 
-Eğer projenin kodlarını keşfetmek, geri bildirim sağlamak veya projeye katkıda bulunmak isterseniz "fork" işlemi yaparak kendi kopyanızı oluşturabilir ve değişikliklerinizi yapabilirsiniz. Ardından "pull request" göndererek değişikliklerinizin incelenmesini ve projeye eklenmesini sağlayabilirsiniz.
+If you want to discover the code of the project, provide feedback or contribute to the project, you can "fork" to create your own copy and make your changes. Then you can send a "pull request" so that your changes are reviewed and added to the project.
 
-☎️ Bu projeyle ilgili herhangi bir sorunuz veya geri bildiriminiz varsa, lütfen iletişime geçmekten çekinmeyin. İyi Çalışmalar!
+☎️ If you have any questions or feedback about this project, please contact me. Enjoy your work!
