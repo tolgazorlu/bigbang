@@ -146,4 +146,4 @@ dist
 build
 .vercel
 
-.DS_Store
+**/.DS_Store
