@@ -5,13 +5,10 @@ import NeutronImage from "../../assets/parallax/neutron.png";
 import GroundImage from "../../assets/parallax/ground.png";
 import AstronoutImage from "../../assets/parallax/astronaut.png";
 import Jumbotron from "../Jumbotron/Jumbotron";
-import Footer from "../../layouts/Footer";
-import Navbar from "../../layouts/Navbar";
 
 const ParallaxPage = () => {
   return (
-    <Parallax pages={1.62} style={{ top: "0", left: "0" }} className="bg-black">
-      <Navbar />
+    <Parallax pages={1.6} className="bg-black">
       <ParallaxLayer offset={0} speed={0.5}>
         <img src={StarsImage} className="absolute animate-pulse" />
       </ParallaxLayer>
@@ -76,9 +73,8 @@ const ParallaxPage = () => {
             always dreamed of!
           </p>
         </div>
-        <div className="bg-black text-slate-300 px-20 font-space ">
+        <div className="bg-black text-slate-300 px-20 font-space">
           <Jumbotron />
-          <Footer />
         </div>
       </ParallaxLayer>
     </Parallax>

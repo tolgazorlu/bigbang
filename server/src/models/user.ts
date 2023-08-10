@@ -37,7 +37,6 @@ UserSchema.pre('save', async function () {
     } catch (error) {
         console.log(`${chalk.bgGreen(error)}`)
     }
-
 })
 
 module.exports = Mongoose.model('User', UserSchema);

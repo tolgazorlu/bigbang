@@ -1,10 +1,6 @@
 import ParallaxPage from "../components/Parallax.tsx/ParallaxPage.tsx";
 const Home = () => {
-  return (
-    <>
-      <ParallaxPage />
-    </>
-  );
+  return <ParallaxPage />;
 };
 
 export default Home;

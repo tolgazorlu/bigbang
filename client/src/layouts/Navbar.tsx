@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -9,22 +8,10 @@ const Navbar = () => {
     { title: "Contact", link: "/contact" },
   ];
 
-  const [colorChange, setColorChange] = useState(false);
-
-  useEffect(() => {
-    const changeNavbarColor = () => {
-      if(window.scrollY >= 80){
-        setColorChange(true)
-      }
-      else{
-        setColorChange(false)
-      }
-    };
-    window.addEventListener('scroll', changeNavbarColor);
-  }, [])
-
   return (
-    <nav className={colorChange ? 'colorChange navbar md:px-24 z-20 font-space bg-black fixed' : 'navbar md:px-24 fixed z-20 font-space '}>
+    <nav
+      className="colorChange navbar md:px-24 z-20 font-space bg-black fixed"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -76,9 +63,7 @@ const Navbar = () => {
         })}
       </div>
       <div className="navbar-end">
-        <a className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4">
-          Login
-        </a>
+      <Link className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4" to='/login'>Login</Link>
       </div>
     </nav>
   );
