@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser')
 
 //ROUTE IMPORTS
 const productRoute = require('./routes/productRoute')
-const pageRoute = require('./routes/pageRoute')
 const authRoute = require('./routes/authRoute')
 
 //APP
@@ -26,6 +25,7 @@ app.use(
     cors({
       origin: '*',
       methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true
     })
   )
 app.use(cookieParser());
@@ -33,7 +33,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-app.use('/', pageRoute)
 app.use('/product', productRoute);
 app.use('/user', authRoute)
 

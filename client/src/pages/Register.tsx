@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const navigation = useNavigate();
+
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     if (password == confirmPassword) {
@@ -20,7 +24,9 @@ const Register = () => {
           password: password,
         })
         .then(function (response) {
-          console.log(response);
+          setTimeout(() => {
+            navigation("/login");
+          }, 1000);
           toast.success("Kayıt gerçekleşti!");
         })
         .catch(function (error) {
@@ -37,7 +43,7 @@ const Register = () => {
       <ToastContainer
         position="top-right"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
