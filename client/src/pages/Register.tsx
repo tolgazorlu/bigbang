@@ -23,7 +23,7 @@ const Register = () => {
           email: email,
           password: password,
         })
-        .then(function (response) {
+        .then(function () {
           setTimeout(() => {
             navigation("/login");
           }, 1000);
