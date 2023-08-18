@@ -2,16 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: black;
+}
+
 @font-face {
     font-family: Space;
     src: url("assets/fonts/death-star.otf") format("opentype");
   }
 
-/* width */
-::-webkit-scrollbar {
-    width: 2px;
-  }
-  
   /* Track */
   ::-webkit-scrollbar-track {
     background: #888;

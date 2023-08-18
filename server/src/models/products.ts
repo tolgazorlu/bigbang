@@ -6,10 +6,22 @@ const ProductSchema = new Schema({
     name: {
         type: String
     },
+    slug: {
+        type: String
+    },
+    category: {
+        type: String
+    },
     detail: {
         type: String
     },
     image: {
+        type: String
+    },
+    rating: {
+        type: String
+    },
+    age: {
         type: String
     },
     price: {

@@ -19,6 +19,7 @@
   "author": "Tolga Zorlu",
   "license": "ISC",
   "dependencies": {
+    "@typegoose/typegoose": "^11.4.1",
     "bcrypt": "^5.1.0",
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.6",

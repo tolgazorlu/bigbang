@@ -5,18 +5,34 @@ import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 
 const App = () => {
+  const [cookies, removeCookie] = useCookies(["token"]);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const verifyCookie = () => {
+      if (!cookies.token) {
+        console.log(cookies)
+        setIsAuth(false);
+      }
+      setIsAuth(true);
+    };
+    verifyCookie();
+  }, [cookies, isAuth, removeCookie]);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar isAuth={isAuth} cookies={cookies} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };

@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
 
-const Navbar = () => {
+const Navbar = ({ isAuth, cookies }: any) => {
   const navbarLinks = [
     { title: "Home", link: "/" },
     { title: "Shop", link: "/shop" },
-    { title: "About", link: "/about" },
-    { title: "Contact", link: "/contact" },
   ];
 
+  const [cookie, removeCookie] = useCookies([cookies]);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const [auth, setAuth] = useState(true);
+
+  const Logout = () => {
+    setAuth(false);
+  };
+
+  const Login = () => {
+    setAuth(true);
+  };
+
   return (
-    <nav
-      className="colorChange navbar md:px-24 z-20 font-space bg-black fixed"
-    >
+    <nav className="colorChange navbar md:px-12 z-20 font-space bg-black fixed">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -61,12 +72,43 @@ const Navbar = () => {
             </ul>
           );
         })}
+        {/* {auth ? (
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <div className="text-white hover:bg-white hover:text-black">
+                <a>Dashboard</a>
+              </div>
+            </li>
+          </ul>
+        ) : (
+          <></>
+        )} */}
       </div>
       <div className="navbar-end">
-      <Link className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4" to='/login'>Login</Link>
+        {auth ? (
+          <Link
+            onClick={Logout}
+            className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
+            to="/login"
+          >
+            Logout
+          </Link>
+        ) : (
+          <Link
+            className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
+            to="/login"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  isAuth: PropTypes.bool,
+  cookies: PropTypes.any,
 };
 
 export default Navbar;
