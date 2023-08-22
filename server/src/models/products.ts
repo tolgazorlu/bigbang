@@ -1,36 +1,33 @@
-import Mongoose from 'mongoose'
+import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose'
 
-const { Schema } = Mongoose;
+@modelOptions({schemaOptions: {timestamps: true}})
+export class Product {
+    public _id?: string
 
-const ProductSchema = new Schema({
-    name: {
-        type: String
-    },
-    slug: {
-        type: String
-    },
-    category: {
-        type: String
-    },
-    detail: {
-        type: String
-    },
-    image: {
-        type: String
-    },
-    rating: {
-        type: String
-    },
-    age: {
-        type: String
-    },
-    price: {
-        type: String
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    }
-})
+    @prop({required: true})
+    public name!: string
 
-module.exports = Mongoose.model('Product', ProductSchema);
+    @prop({required: true, unique: true})
+    public slug!: string
+
+    @prop({required: true})
+    public category!: string
+
+    @prop({required: true})
+    public detail!: string
+    
+    @prop({required: true})
+    public image!: string
+
+    @prop({required: true, default: 0})
+    public rating!: number
+
+    @prop({required: true})
+    public age!: number
+
+    @prop({required: true, default: 0})
+    public price!: number
+}
+
+
+export const ProductModel = getModelForClass(Product)

@@ -16,7 +16,6 @@ const App = () => {
   useEffect(() => {
     const verifyCookie = () => {
       if (!cookies.token) {
-        console.log(cookies)
         setIsAuth(false);
       }
       setIsAuth(true);

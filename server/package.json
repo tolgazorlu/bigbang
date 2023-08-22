@@ -19,7 +19,6 @@
   "author": "Tolga Zorlu",
   "license": "ISC",
   "dependencies": {
-    "@typegoose/typegoose": "^11.4.1",
     "bcrypt": "^5.1.0",
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.6",
@@ -30,6 +29,7 @@
     "mongoose": "^7.3.1"
   },
   "devDependencies": {
+    "@typegoose/typegoose": "^11.0.0-beta.1",
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.3",
     "nodemon": "^2.0.22",
