@@ -43,3 +43,16 @@ exports.getProducts = async (req: Request, res: Response) => {
         })
     }
 }
+
+exports.getProduct = async (req: Request, res: Response) => {
+    try {
+        const product = await ProductModel.find({slug: req.params.slug})
+        if(product){
+            res.status(200).json(product)
+        }
+    } catch (error) {
+        res.status(400).json({
+            'success': 'fail'
+        })
+    }
+}

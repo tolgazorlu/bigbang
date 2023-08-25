@@ -1,13 +1,12 @@
+import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Navbar from "./layouts/Navbar";
-import Footer from "./layouts/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useState } from "react";
-import { useCookies } from "react-cookie";
-import { useEffect } from "react";
+import SingleProduct from "./pages/SingleProduct";
 
 const App = () => {
   const [cookies, removeCookie] = useCookies(["token"]);
@@ -24,15 +23,16 @@ const App = () => {
   }, [cookies, isAuth, removeCookie]);
 
   return (
-    <BrowserRouter>
-      <Navbar isAuth={isAuth} cookies={cookies} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Navbar isAuth={isAuth} cookies={cookies} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:slug" element={<SingleProduct />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
   );
 };
 

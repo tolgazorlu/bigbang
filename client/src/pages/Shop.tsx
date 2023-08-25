@@ -5,21 +5,23 @@ import { Product } from "../types/ProductType";
 import axios from "axios";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get<Product>(
-          "http://localhost:8000/product"
+        const response = await axios.get<Product[]>(
+          "http://localhost:8000/product",
         );
-        setProducts(response.data);
+        const data: Product[] = response.data;
+        console.log(data)
+        setProducts(data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchProduct();
+    void fetchProduct();
   }, []);
 
   return (
@@ -39,8 +41,8 @@ const Shop = () => {
       </div>
       <hr className="h-px bg-gray-500 border-0 w-full" />
       <div className="bg-black w-full grid grid-cols-4 gap-4 mt-12 mb-12">
-        {products.map((index, item) => {
-          return <Card key={index} content={products[item]} />;
+        {products.map((item, index) => {
+          return <Card key={index} content={item} />;
         })}
       </div>
       <Footer />

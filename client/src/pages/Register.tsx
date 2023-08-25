@@ -55,7 +55,7 @@ const Register = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
-          className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-100"
+          className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-100 mt-12"
         >
           Bigbang
         </a>
