@@ -34,9 +34,9 @@ const SingleProduct = () => {
 
   if (product) {
     return (
-      <div className="md:px-12">
+      <div className="px-12">
         <div className="w-full h-24"></div>
-        <div className="md:px-32 justify-start items-center grid grid-cols-2 gap-4">
+        <div className="md:px-32 justify-start items-center grid grid-cols-1 sm:grid-cols-2 gap-4">
           <img className="w-full" src={product.image} />
           <div className="flex flex-col">
             <span className="font-bold text-gray-200 text-3xl font-space">
