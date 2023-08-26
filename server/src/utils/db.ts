@@ -1,8 +1,6 @@
 import mongoose, { ConnectOptions } from "mongoose";
 import chalk from "chalk";
 
-const User = require('../models/user')
-
 const keys = require("../config/keys");
 const { database } = keys;
 

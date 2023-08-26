@@ -1,9 +1,9 @@
-import express, {Response, Request} from 'express'
+import { Response, Request } from 'express'
 import { ProductModel } from '../models/products'
 
 exports.createProduct = async (req: Request, res: Response) => {
-    try{
-        const addProduct = async (name: String, slug:String, category:Number, detail: String, image: String, rating: Number, age: Number, price: Number) => {
+    try {
+        const addProduct = async (name: String, slug: String, category: Number, detail: String, image: String, rating: Number, age: Number, price: Number) => {
             await ProductModel.create({
                 name: name,
                 slug: slug,
@@ -15,29 +15,26 @@ exports.createProduct = async (req: Request, res: Response) => {
                 price: price,
             });
         }
-
         addProduct(req.body.name, req.body.slug, req.body.category, req.body.detail, req.body.image, req.body.rating, req.body.age, req.body.price);
-
         res.status(200).json(
             {
                 'success': 'true'
             }
         );
     }
-    catch(err){
+    catch (err) {
         res.status(400).json({
             'succcess': 'fail'
         })
     }
-    
 }
 
 exports.getProducts = async (req: Request, res: Response) => {
-    try{
+    try {
         const product = await ProductModel.find({})
         res.status(200).json(product);
     }
-    catch(err){
+    catch (err) {
         res.status(400).json({
             'succcess': 'fail'
         })
@@ -46,8 +43,8 @@ exports.getProducts = async (req: Request, res: Response) => {
 
 exports.getProduct = async (req: Request, res: Response) => {
     try {
-        const product = await ProductModel.find({slug: req.params.slug})
-        if(product){
+        const product = await ProductModel.find({ slug: req.params.slug })
+        if (product) {
             res.status(200).json(product)
         }
     } catch (error) {

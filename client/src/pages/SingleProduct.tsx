@@ -30,7 +30,7 @@ const SingleProduct = () => {
     };
 
     void fetchProduct();
-  }, []);
+  }, [product, slug]);
 
   if (product) {
     return (
@@ -63,16 +63,14 @@ const SingleProduct = () => {
               Price : {product.price} Cosmic Token
             </span>
             <br></br>
-            <Link
-              to=""
-              className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold">
+            <Link to="" className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold">
               Buy
             </Link>
           </div>
         </div>
         <hr className="mt-10 h-px bg-gray-500 border-0 w-full" />
         <div className="bg-black w-full grid grid-cols-4 gap-4 mt-12 mb-12"></div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
