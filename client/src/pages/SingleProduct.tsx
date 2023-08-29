@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Product } from "../types/ProductType";
 import Footer from "../layouts/Footer";
+import Rating from "../components/Product/Rating";
 
 const SingleProduct = () => {
   const [product, setProduct] = useState<Product>();
@@ -58,6 +59,8 @@ const SingleProduct = () => {
             <span className="text-gray-600 w-full text-md font-space">
               Rating : {product.rating}
             </span>
+            <br></br>
+            <Rating rating={product.rating} />
             <br></br>
             <span className="text-gray-600 w-full text-md font-space">
               Price : {product.price} Cosmic Token
