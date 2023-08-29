@@ -34,41 +34,43 @@ const Register = () => {
     });
   }
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <ValidationForm {...data} updateFields={updateFields} />,
     ]);
 
-    const navigation = useNavigate()
+  const navigation = useNavigate();
 
-  const onSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     if (!isLastStep) return next();
 
-    if(data.password == data.confirmPassword){
-      await axios.post('http://localhost:8000/user/register', {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        password: data.password
-      })
-      .then(function(){
-        setTimeout(() => {
-          navigation('/login')
-        }, 1000)
-        toast.success("Kayıt gerçekleşti!")
-      })
-      .catch(function(error){
-        console.log(error)
-        toast.error("Kayıt gerçekleşmedi!")
-      })
+    if (data.password == data.confirmPassword) {
+      await axios
+        .post("http://localhost:8000/user/register", {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+          password: data.password,
+        })
+        .then(function () {
+          setTimeout(() => {
+            navigation("/login");
+          }, 1000);
+          toast.success("Kayıt gerçekleşti!");
+          localStorage.setItem('userInfo', JSON.stringify(data))
+        })
+        .catch(function (error) {
+          console.log(error);
+          toast.error("Kayıt gerçekleşmedi!");
+        });
+    } else {
+      toast.error("Şifreler uyuşmuyor!");
     }
-    else{
-      toast.error("Şifreler uyuşmuyor!")
-    }
-  }
+  };
 
   return (
     <section className="bg-black">
@@ -102,7 +104,8 @@ const Register = () => {
         </ul>
         <div className="w-full rounded-lg shadow border dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               {step}
 
               <div className="w-full flex justify-between gap-1">

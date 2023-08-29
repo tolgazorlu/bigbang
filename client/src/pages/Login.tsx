@@ -15,7 +15,7 @@ const Login = () => {
   ) => {
     e.preventDefault();
     try {
-      await axios
+      const data = await axios
         .post(
           "http://localhost:8000/user/login",
           {
@@ -27,6 +27,7 @@ const Login = () => {
           setTimeout(() => {
             navigation("/");
           }, 1000);
+          localStorage.setItem('userInfo', JSON.stringify(data))
           toast.success("Giriş yapıldı!");
         });
     } catch (error) {

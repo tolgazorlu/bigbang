@@ -4,7 +4,6 @@ import express, { Express } from 'express';
 import chalk from 'chalk';
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-
 //ROUTE IMPORTS
 const productRoute = require('./routes/productRoute')
 const authRoute = require('./routes/authRoute')

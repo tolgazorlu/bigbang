@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
 import { userModel } from '../models/user';
+import { generateToken } from '../utils/token';
 const bcrypt = require('bcrypt');
-const { createSecretToken } = require('../utils/token')
 
 module.exports.Register = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email } = req.body
         const existingUser = await userModel.findOne({ email })
-            if (existingUser) {
-                return res.status(400).json({ message: 'User already exists' });
-            }
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
         const addUser = async (firstName: string, lastName: string, phoneNumber: string, email: string, password: string, avatar: string) => {
             const user = await userModel.create({
                 firstName: firstName,
@@ -19,11 +19,26 @@ module.exports.Register = async (req: Request, res: Response, next: NextFunction
                 password: password,
                 avatar: avatar
             })
+            return user
         }
-        addUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.email, req.body.password, req.body.avatar)
+        const newUser = await addUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.email, req.body.password, req.body.avatar)
+        const token = generateToken(newUser)
+        res.cookie("token", token, {
+            httpOnly: false,
+          });
         res
-                .status(201)
-                .json({ message: "User signed in successfully", success: true });
+            .status(201)
+            .json({ 
+                _id: newUser._id,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                phoneNumber: newUser.phoneNumber,
+                email: newUser.email,
+                avatar: newUser.avatar,
+                isAdmin: newUser.isAdmin,
+                token: generateToken(newUser)
+             });
+        
         next();
     } catch (error) {
         console.log(error)
@@ -44,11 +59,18 @@ module.exports.Login = async (req: Request, res: Response, next: NextFunction) =
         if (!auth) {
             return res.json({ message: 'Incorrect password or email' })
         }
-        const token = createSecretToken(user._id);
+        const token = generateToken(user)
         res.cookie("token", token, {
-            httpOnly: false,
-        });
-        res.status(201).json({ message: "User logged in successfully", success: true });
+            httpOnly: true,
+        })
+        res.status(201).json({ 
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user)
+         });
         next()
     } catch (error) {
         console.log(error)
