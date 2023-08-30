@@ -13,7 +13,7 @@ const app: Express = express();
 
 //CONFIG KEYS
 const keys = require('./config/keys');
-const {port} = keys;
+const { port } = keys;
 
 //DB SETUP
 const setupDB = require('./utils/db')
@@ -21,12 +21,12 @@ setupDB();
 
 //MIDDLEWARES
 app.use(
-    cors({
-      origin: '*',
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      credentials: true
-    })
-  )
+  cors({
+    origin: '*',
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+)
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,5 +37,5 @@ app.use('/user', authRoute)
 
 //LISTEN
 app.listen(port, () => {
-    console.log(`Port is running on ${chalk.blue(port)}`);
+  console.log(`Port is running on ${chalk.blue(port)}`);
 })

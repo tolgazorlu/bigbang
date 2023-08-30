@@ -16,18 +16,15 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await axios
-        .post(
-          "http://localhost:8000/user/login",
-          {
-            email: email,
-            password: password,
-          }
-        )
+        .post("http://localhost:8000/user/login", {
+          email: email,
+          password: password,
+        })
         .then(function () {
           setTimeout(() => {
             navigation("/");
           }, 1000);
-          localStorage.setItem('userInfo', JSON.stringify(data))
+          localStorage.setItem("userInfo", JSON.stringify(data));
           toast.success("Giriş yapıldı!");
         });
     } catch (error) {

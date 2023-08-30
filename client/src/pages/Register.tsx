@@ -61,7 +61,7 @@ const Register = () => {
             navigation("/login");
           }, 1000);
           toast.success("Kayıt gerçekleşti!");
-          localStorage.setItem('userInfo', JSON.stringify(data))
+          localStorage.setItem("userInfo", JSON.stringify(data));
         })
         .catch(function (error) {
           console.log(error);

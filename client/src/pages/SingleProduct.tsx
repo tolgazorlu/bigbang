@@ -66,7 +66,10 @@ const SingleProduct = () => {
               Price : {product.price} Cosmic Token
             </span>
             <br></br>
-            <Link to="" className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold">
+            <Link
+              to=""
+              className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold"
+            >
               Buy
             </Link>
           </div>

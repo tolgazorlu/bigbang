@@ -1,67 +1,26 @@
-import React, { useEffect, useReducer } from "react";
-import { Product } from "../types/ProductType";
-import axios from "axios";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import Card from "../components/Product/Card";
 import Footer from "../layouts/Footer";
+import { Helmet } from "react-helmet-async";
+import { useGetProductsQuery } from "../hooks/productHooks";
+import { getError } from "../utils/getError";
+import { ApiError } from "../types/ApiError";
 
-type State = {
-  products: Product[];
-  loading: boolean;
-  error: string;
-};
-
-type Action =
-  | { type: "FETCH_REQUEST" }
-  | { type: "FETCH_SUCCESS"; payload: Product[] }
-  | { type: "FETCH_FAIL"; payload: string };
-
-const initialState: State = {
-  products: [],
-  loading: true,
-  error: "",
-};
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, products: action.payload, loading: false };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
 
 const Home = () => {
-  const [{ loading, error, products }, dispatch] = useReducer<
-    React.Reducer<State, Action>
-  >(reducer, initialState);
+  
+  const { data: products, isLoading, error } = useGetProductsQuery()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
-      try {
-        const result = await axios.get<Product[]>("http://localhost:8000/product");
-        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err as ApiError) });
-      }
-    };
-    void fetchData();
-  }, []);
-
-  return loading ? (
+  return isLoading ? (
     <Loading />
   ) : error ? (
-    <ErrorMessage>{error}</ErrorMessage>
+    <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
   ) : (
     <div className="sm:px-12">
+      <Helmet>
+        <title>Bigbang Products</title>
+      </Helmet>
       <div className="w-full h-12"></div>
       <div className="w-full h-64 flex justify-start items-center">
         <div className="flex flex-col">
@@ -77,7 +36,7 @@ const Home = () => {
       </div>
       <hr className="h-px bg-gray-500 border-0 w-full" />
       <div className="bg-black w-full grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-12 mb-12">
-        {products.map((item, index) => {
+        {products!.map((item, index) => {
           return <Card key={index} content={item} />;
         })}
       </div>
