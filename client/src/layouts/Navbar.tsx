@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
+import { BsFillHandbagFill } from "react-icons/bs";
+import { Store } from "../Store";
 
 const Navbar = ({ isAuth, cookies }: any) => {
   const navbarLinks = [
     { title: "Home", link: "/" },
     { title: "Shop", link: "/shop" },
   ];
+
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(Store);
 
   const [cookie, removeCookie] = useCookies([cookies]);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -72,19 +79,19 @@ const Navbar = ({ isAuth, cookies }: any) => {
             </ul>
           );
         })}
-        {/* {auth ? (
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <div className="text-white hover:bg-white hover:text-black">
-                <a>Dashboard</a>
-              </div>
-            </li>
-          </ul>
-        ) : (
-          <></>
-        )} */}
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-4">
+        <Link to="/cart" className="btn btn-ghost btn-circle">
+          <div className="indicator">
+          <BsFillHandbagFill className="h-5 w-5 text-white"/>
+          {cart.cartItems.length > 0 && (
+            <span className="badge badge-sm text-white bg-red-500 font-inter indicator-item">
+              {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+            </span>
+          )}
+          </div>
+          
+        </Link>
         {auth ? (
           <Link
             onClick={Logout}

@@ -11,6 +11,12 @@ body {
   src: url("assets/fonts/death-star.otf") format("opentype");
 }
 
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/Inter-Regular.ttf") format("opentype");
+}
+
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: #888;

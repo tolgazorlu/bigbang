@@ -6,6 +6,7 @@ import { useMultistepForm } from "../utils/useMultistepForm";
 import ValidationForm from "../components/Register/ValidationForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 type FormData = {
   firstName: string;
@@ -86,6 +87,9 @@ const Register = () => {
         pauseOnHover
         theme="light"
       />
+      <Helmet>
+        <title>Bigbang Register</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"

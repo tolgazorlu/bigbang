@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Dashborad from "./pages/Dashborad";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
+import { Store } from "./Store";
 
 const App = () => {
   const [cookies, removeCookie] = useCookies(["token"]);
