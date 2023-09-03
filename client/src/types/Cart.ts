@@ -1,7 +1,8 @@
 export type CartItem = {
-    quantity: number
+    quantity: number,
     _id: string,
     name: string,
+    slug: string,
     price: number,
     image: string | undefined
 }
@@ -16,11 +17,11 @@ export type ShippingAddress = {
 }
 
 export type Cart = {
-    itemsPrice: number
-    shippingPrice: number
-    taxPrice: number
-    totalPrice: number
-    cartItems: CartItem[]
-    shippingAddress: ShippingAddress
+    itemsPrice: number,
+    shippingPrice: number,
+    taxPrice: number,
+    totalPrice: number,
+    cartItems: CartItem[],
+    shippingAddress: ShippingAddress,
     paymentMethod: string
 }

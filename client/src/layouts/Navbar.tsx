@@ -84,11 +84,11 @@ const Navbar = ({ isAuth, cookies }: any) => {
         <Link to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
           <BsFillHandbagFill className="h-5 w-5 text-white"/>
-          {cart.cartItems.length > 0 && (
-            <span className="badge badge-sm text-white bg-red-500 font-inter indicator-item">
+          {cart.cartItems.length > 0 ? (
+            <span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">
               {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
             </span>
-          )}
+          ) : (<span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">0</span>)}
           </div>
           
         </Link>

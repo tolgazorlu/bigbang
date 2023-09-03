@@ -43,13 +43,6 @@ const Card = (props: { content: Product }) => {
         <p>{props.content.detail}</p>
         <Rating rating={props.content.rating} />
         <div className="card-actions justify-start">
-          {/* <Link
-            to={"/product/" + props.content.slug}
-            className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold"
-          >
-            Look More
-          </Link> */}
-          
           <button
             onClick={() => addToCartHandler(convertProductToCartItem(props.content))}
             className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold"

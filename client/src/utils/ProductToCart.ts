@@ -7,6 +7,8 @@ export const convertProductToCartItem = (product: Product): CartItem => {
       name: product.name,
       image: product.image,
       price: product.price,
+      slug: product.slug,
+      quantity: 1
     }
     return cartItem
   }
