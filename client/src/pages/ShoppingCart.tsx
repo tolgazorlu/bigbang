@@ -9,6 +9,9 @@ import {
   AiFillMinusCircle,
   AiFillPlusCircle,
 } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import EmptyCart from "../assets/animation/cart.json";
+import Lottie from "lottie-react";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
@@ -26,10 +29,28 @@ const ShoppingCart = () => {
     });
   };
 
-  return (
+  const removeItemHandler = (item: CartItem) => {
+    dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
+
+  console.log(cartItems);
+
+  return cartItems.length > 0 ? (
     <div className="sm:px-14">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Helmet>
-        <title>Shopping...</title>
+        <title>Complete your order...</title>
       </Helmet>
       <div className="w-full h-12"></div>
       <div className="w-full h-32 flex justify-start items-center">
@@ -43,7 +64,10 @@ const ShoppingCart = () => {
       <div className="grid grid-cols-2">
         <ul>
           {cartItems.map((item: CartItem) => (
-            <li className="h-48 w-full border-b-[1px] border-gray-500">
+            <li
+              key={item._id}
+              className="h-48 w-full border-b-[1px] border-gray-500"
+            >
               <div className="h-full w-full p-2 flex">
                 <img
                   className="h-full p-2 w-2/6 img-fluid img-thumbnail"
@@ -54,8 +78,14 @@ const ShoppingCart = () => {
                   <div className="w-full h-1/3 p-2">
                     <div className="flex items-center justify-between">
                       <span className="text-gray-200">{item.name}</span>
-                      <button className="p-1">
-                        <AiFillDelete className="text-red-400 w-5 h-5" />
+                      <button
+                        className="p-1"
+                        onClick={() => {
+                          removeItemHandler(item);
+                          toast.info("Product removed from cart");
+                        }}
+                      >
+                        <AiFillDelete className="text-red-400 hover:text-red-500 w-5 h-5" />
                       </button>
                     </div>
                   </div>
@@ -63,12 +93,26 @@ const ShoppingCart = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-gray-200">Quantity</span>
                       <div className="flex items-center justify-center">
-                        <button className="p-1">
-                          <AiFillMinusCircle className="text-cyan-400 w-5 h-5" />
+                        <button
+                          className="p-1"
+                          onClick={() => {
+                            updateCartHandler(item, item.quantity - 1);
+                            toast.info("Quantity decreased");
+                          }}
+                          disabled={item.quantity === 1}
+                        >
+                          <AiFillMinusCircle className="text-gray-400 hover:text-green-500 w-5 h-5" />
                         </button>
                         <span>{item.quantity}</span>
-                        <button className="p-1">
-                          <AiFillPlusCircle className="text-cyan-400 w-5 h-5" />
+                        <button
+                          className="p-1"
+                          onClick={() => {
+                            updateCartHandler(item, item.quantity + 1);
+                            toast.info("Quantity increased");
+                          }}
+                          disabled={item.quantity === 8}
+                        >
+                          <AiFillPlusCircle className="text-gray-400 hover:text-green-500 w-5 h-5" />
                         </button>
                       </div>
                     </div>
@@ -87,40 +131,72 @@ const ShoppingCart = () => {
           ))}
         </ul>
         <div className="w-full h-[60vh] px-4 rounded">
-          <div className="w-full bg-slate-800 h-full rounded-md">
+          <div className="w-full bg-slate-900 h-full rounded-md">
             <div className="h-1/6 py-6 p-4 px-8 font-inter font-bold text-white text-xl flex items-center">
               Order Summary
             </div>
             <ul className="h-4/6 px-8 text-lg ">
-              <li className="py-4 flex justify-between items-center border-b-[0.3px]">
+              <li className="py-4 flex justify-between items-center border-b-[0.3px] italic">
                 <span>Subtotal</span>
                 <span>$99.00</span>
               </li>
-              <li className="py-4 flex justify-between items-center border-b-[0.3px]">
+              <li className="py-4 flex justify-between items-center border-b-[0.3px] italic">
                 <span>Shipping Estimate</span>
                 <span>$5.00</span>
               </li>
-              <li className="py-4 flex justify-between items-center border-b-[0.3px]">
+              <li className="py-4 flex justify-between items-center border-b-[0.3px] italic">
                 <span>Tax Estimate</span>
                 <span>$8.32</span>
               </li>
-              <li className="py-4 flex justify-between items-center border-b-[0.3px]">
-                <span className="font-bold text-white">Order Total</span>
-                <span className="font-bold text-white">$112.32</span>
+              <li className="py-4 flex justify-between items-center border-b-[0.3px] italic">
+                <span className="font-semibold text-white">Order Total</span>
+                <span className="font-semibold text-white">$112.32</span>
               </li>
             </ul>
             <div className="h-1/6 px-8">
               <Link
-                className="btn-sm flex items-center justify-center bg-purple-600 hover:bg-purple-500 text-white w-full rounded-md font-bold"
-                to={"/product/"}
+                className="p-5 btn-sm flex items-center justify-center bg-cyan-600 hover:bg-cyan-500 text-white w-full rounded-md font-bold"
+                to={"/checkout/"}
               >
                 Checkout
+              </Link>
+              <Link
+                className="p-2 btn-sm flex items-center justify-center text-cyan-500 w-full rounded-md"
+                to={"/"}
+              >
+                or continue shopping
               </Link>
             </div>
           </div>
         </div>
       </div>
-
+      <Footer />
+    </div>
+  ) : (
+    <div className="sm:px-14">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Helmet>
+        <title>Go to shopping</title>
+      </Helmet>
+      <div className="w-full h-[80vh] flex justify-center items-center text-white bg-black">
+        <div className="w-full flex justify-center items-center flex-col gap-10">
+          <Lottie className="w-full h-48" animationData={EmptyCart} />
+          <span className="font-space text-3xl">
+            Your shopping cart is empty!
+          </span>
+        </div>
+      </div>
       <Footer />
     </div>
   );

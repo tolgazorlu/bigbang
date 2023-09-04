@@ -10,6 +10,7 @@ import { Product } from "../types/ProductType";
 import { useContext } from "react";
 import { Store } from "../Store";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 const Home = () => {
@@ -24,6 +25,18 @@ const Home = () => {
     <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
   ) : (
     <div className="sm:px-12">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Helmet>
         <title>Bigbang Products</title>
       </Helmet>
