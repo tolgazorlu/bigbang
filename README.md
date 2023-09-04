@@ -56,20 +56,7 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 💻 Project Setup
-
-- Step 1 - Clone this project in your device:
-  `git clone https://github.com/tolgazorlu/bigbang.git`
-- Step 2 - Go to client folder, install all dependencies and run project:
-  `cd client`
-  `npm install`
-  `npm start`
-- Step 3 - Go to server folder, install all dependencies and run project:
-  `cd server`
-  `npm install`
-  `npm start`
-
-### 🛠️ Technologies
+## 🛠️ Technologies
 
 <p align="center">
   <a>
