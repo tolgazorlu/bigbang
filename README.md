@@ -150,11 +150,36 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 <!-- CONTACT -->
 ## Contact
 
 Tolga Zorlu - [@twitter](https://twitter.com/tolgzorlu) - tolgazorlu17@gmail.com
 
 Project Link: [https://github.com/tolgazorlu/bigbang](https://github.com/tolgazorlu/bigbang)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+
+* [React](https://react.dev/)
+* [Vite](https://vitejs.dev/)
+* [TailwindCSS](https://tailwindcss.com/)
+* [NodeJS](https://nodejs.org/en)
+* [ExpressJS](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [JsonWebToken](https://jwt.io/)
+* [Eslint](https://eslint.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
