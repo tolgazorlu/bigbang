@@ -1,7 +1,5 @@
-import axios from "axios";
-import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Product } from "../types/ProductType";
+import { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../layouts/Footer";
 import Rating from "../components/Product/Rating";
 import { useGetProductDetailsBySlugQuery } from "../hooks/productHooks";

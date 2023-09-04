@@ -7,17 +7,10 @@ import ErrorMessage from "../components/ErrorMessage";
 import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import { Product } from "../types/ProductType";
-import { useContext } from "react";
-import { Store } from "../Store";
-import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-
 const Home = () => {
-
-  
-  
-  const { data: products, isLoading, error } = useGetProductsQuery()
+  const { data: products, isLoading, error } = useGetProductsQuery();
 
   return isLoading ? (
     <Loading />

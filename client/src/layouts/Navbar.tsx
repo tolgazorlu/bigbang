@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useContext } from "react";
 import { BsFillHandbagFill } from "react-icons/bs";
 import { Store } from "../Store";
 
-const Navbar = ({ isAuth, cookies }: any) => {
+const Navbar = () => {
   const navbarLinks = [
     { title: "Home", link: "/" },
     { title: "Shop", link: "/shop" },
@@ -13,20 +12,7 @@ const Navbar = ({ isAuth, cookies }: any) => {
 
   const {
     state: { cart },
-    dispatch,
   } = useContext(Store);
-
-  const [cookie, removeCookie] = useCookies([cookies]);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const [auth, setAuth] = useState(true);
-
-  const Logout = () => {
-    setAuth(false);
-  };
-
-  const Login = () => {
-    setAuth(true);
-  };
 
   return (
     <nav className="colorChange navbar md:px-12 z-20 font-space bg-black fixed">
@@ -83,16 +69,19 @@ const Navbar = ({ isAuth, cookies }: any) => {
       <div className="navbar-end gap-4">
         <Link to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
-          <BsFillHandbagFill className="h-5 w-5 text-white"/>
-          {cart.cartItems.length > 0 ? (
-            <span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">
-              {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-            </span>
-          ) : (<span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">0</span>)}
+            <BsFillHandbagFill className="h-5 w-5 text-white" />
+            {cart.cartItems.length > 0 ? (
+              <span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">
+                {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+              </span>
+            ) : (
+              <span className="badge badge-sm text-white bg-cyan-500 font-inter indicator-item">
+                0
+              </span>
+            )}
           </div>
-          
         </Link>
-        {auth ? (
+        {/* {auth ? (
           <Link
             onClick={Logout}
             className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
@@ -107,7 +96,13 @@ const Navbar = ({ isAuth, cookies }: any) => {
           >
             Login
           </Link>
-        )}
+        )} */}
+        <Link
+          className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
+          to="/login"
+        >
+          Login
+        </Link>
       </div>
     </nav>
   );

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Store } from "../Store";
 import { CartItem } from "../types/Cart";
 import { Helmet } from "react-helmet-async";
@@ -14,7 +14,6 @@ import EmptyCart from "../assets/animation/cart.json";
 import Lottie from "lottie-react";
 
 const ShoppingCart = () => {
-  const navigate = useNavigate();
   const {
     state: {
       cart: { cartItems },
