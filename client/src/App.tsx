@@ -6,7 +6,6 @@ import Register from "./pages/Register";
 import SingleProduct from "./pages/SingleProduct";
 import NotFound from "./pages/NotFound";
 import Dashborad from "./pages/Dashborad";
-import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 
@@ -18,7 +17,6 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/landing" element={<Landing />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:slug" element={<SingleProduct />} />
           <Route path="/login" element={<Login />} />

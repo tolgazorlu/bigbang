@@ -14,8 +14,15 @@ const Navbar = () => {
     state: { cart },
   } = useContext(Store);
 
-  const { state, dispatch } = useContext(Store)
+  const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
+
+  const signoutHandler = () => {
+    dispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartItems");
+    window.location.href = "/login";
+  };
 
   return (
     <nav className="colorChange navbar md:px-12 z-20 font-space bg-black fixed">
@@ -85,12 +92,33 @@ const Navbar = () => {
           </div>
         </Link>
         {userInfo ? (
-          <Link
-            className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
-            to="/login"
-          >
-            Logout
-          </Link>
+          // <button
+          //   className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
+          //   onClick={signoutHandler}
+          // >
+          //   Logout
+          // </button>
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="h-8 w-8 rounded-full ring ring-white">
+                <img src="https://pbs.twimg.com/profile_images/1667395021564260352/SPZWUzxn_400x400.jpg" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <button onClick={signoutHandler}>Logout</button>
+              </li>
+            </ul>
+          </div>
         ) : (
           <Link
             className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"

@@ -1,36 +1,48 @@
-import { useEffect, useState } from "react";
 import Card from "../components/Product/Card";
+import { useGetProductsQuery } from "../hooks/productHooks";
+import { getError } from "../utils/getError";
+import { ApiError } from "../types/ApiError";
+import Loading from "../components/Loading";
+import ErrorMessage from "../components/ErrorMessage";
+import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import { Product } from "../types/ProductType";
-import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { Store } from "../Store";
 
-const Shop = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+const Home = () => {
+  const { data: products, isLoading, error } = useGetProductsQuery();
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get<Product[]>(
-          "http://localhost:8000/product",
-        );
-        const data: Product[] = response.data;
-        console.log(data)
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    void fetchProduct();
-  }, []);
-
-  return (
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  
+  return isLoading ? (
+    <Loading />
+  ) : error ? (
+    <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
+  ) : (
     <div className="sm:px-12">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Helmet>
+        <title>Bigbang Products</title>
+      </Helmet>
       <div className="w-full h-12"></div>
       <div className="w-full h-64 flex justify-start items-center">
         <div className="flex flex-col">
           <span className="font-bold text-gray-200 text-3xl font-space flex justify-center xl:justify-start">
-            Space Collection
+            Space Collection {userInfo?.firstName}
           </span>
           <br></br>
           <span className="px-12 md:px-0 font-bold text-gray-400 xl:w-1/2 text-md font-space flex justify-center xl:justify-start">
@@ -41,7 +53,7 @@ const Shop = () => {
       </div>
       <hr className="h-px bg-gray-500 border-0 w-full" />
       <div className="bg-black w-full grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-12 mb-12">
-        {products.map((item, index) => {
+        {products!.map((item: Product, index: number) => {
           return <Card key={index} content={item} />;
         })}
       </div>
@@ -50,4 +62,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Home;

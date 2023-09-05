@@ -20,7 +20,7 @@ export default {
     },
     fontFamily: {
       'space': 'Space',
-      'inter': 'Inter'
+      'inter': 'Inter',
     }
   },
   plugins: [require("daisyui")],

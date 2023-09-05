@@ -22,8 +22,6 @@ const Login = () => {
 
   const { mutateAsync: login, isLoading } = useLoginMutation();
 
-  localStorage.clear();
-
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
