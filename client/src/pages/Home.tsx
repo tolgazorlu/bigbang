@@ -8,9 +8,16 @@ import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import { Product } from "../types/ProductType";
 import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { Store } from "../Store";
 
 const Home = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+
+  console.log(userInfo)
 
   return isLoading ? (
     <Loading />
@@ -37,7 +44,7 @@ const Home = () => {
       <div className="w-full h-64 flex justify-start items-center">
         <div className="flex flex-col">
           <span className="font-bold text-gray-200 text-3xl font-space flex justify-center xl:justify-start">
-            Space Collection
+            Space Collection {userInfo?.firstName}
           </span>
           <br></br>
           <span className="px-12 md:px-0 font-bold text-gray-400 xl:w-1/2 text-md font-space flex justify-center xl:justify-start">

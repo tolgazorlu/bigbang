@@ -1,5 +1,3 @@
-import { useState, useEffect, useContext } from "react";
-import { useCookies } from "react-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
 import Navbar from "./layouts/Navbar";
@@ -10,26 +8,12 @@ import NotFound from "./pages/NotFound";
 import Dashborad from "./pages/Dashborad";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
-import { Store } from "./Store";
 import ShoppingCart from "./pages/ShoppingCart";
 
 const App = () => {
-  const [cookies, removeCookie] = useCookies(["token"]);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    const verifyCookie = () => {
-      if (!cookies.token) {
-        setIsAuth(false);
-      }
-      setIsAuth(true);
-    };
-    verifyCookie();
-  }, [cookies, isAuth, removeCookie]);
-
   return (
       <BrowserRouter>
-        <Navbar isAuth={isAuth} cookies={cookies} />
+        <Navbar/>
         <Routes>
         <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />

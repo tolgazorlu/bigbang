@@ -14,6 +14,9 @@ const Navbar = () => {
     state: { cart },
   } = useContext(Store);
 
+  const { state, dispatch } = useContext(Store)
+  const { userInfo } = state;
+
   return (
     <nav className="colorChange navbar md:px-12 z-20 font-space bg-black fixed">
       <div className="navbar-start">
@@ -81,9 +84,8 @@ const Navbar = () => {
             )}
           </div>
         </Link>
-        {/* {auth ? (
+        {userInfo ? (
           <Link
-            onClick={Logout}
             className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
             to="/login"
           >
@@ -96,13 +98,13 @@ const Navbar = () => {
           >
             Login
           </Link>
-        )} */}
-        <Link
+        )}
+        {/* <Link
           className="btn btn-sm btn-outline hover:bg-white hover:text-black text-white px-4"
           to="/login"
         >
           Login
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

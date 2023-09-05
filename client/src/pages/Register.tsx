@@ -61,15 +61,15 @@ const Register = () => {
           setTimeout(() => {
             navigation("/login");
           }, 1000);
-          toast.success("Kayıt gerçekleşti!");
+          toast.success("Registration failed!");
           localStorage.setItem("userInfo", JSON.stringify(data));
         })
         .catch(function (error) {
           console.log(error);
-          toast.error("Kayıt gerçekleşmedi!");
+          toast.error("Registration successed!");
         });
     } else {
-      toast.error("Şifreler uyuşmuyor!");
+      toast.error("Password and confirm password not matching!");
     }
   };
 

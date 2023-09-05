@@ -1,7 +1,6 @@
 import React from "react";
 
 const ErrorMessage = ({
-  variant = "info",
   children,
 }: {
   variant?: string;

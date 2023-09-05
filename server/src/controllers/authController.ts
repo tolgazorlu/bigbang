@@ -22,10 +22,6 @@ module.exports.Register = async (req: Request, res: Response, next: NextFunction
             return user
         }
         const newUser = await addUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.email, req.body.password, req.body.avatar)
-        const token = generateToken(newUser)
-        res.cookie("token", token, {
-            httpOnly: false,
-          });
         res
             .status(201)
             .json({ 
@@ -59,10 +55,6 @@ module.exports.Login = async (req: Request, res: Response, next: NextFunction) =
         if (!auth) {
             return res.json({ message: 'Incorrect password or email' })
         }
-        const token = generateToken(user)
-        res.cookie("token", token, {
-            httpOnly: true,
-        })
         res.status(201).json({ 
             _id: user._id,
             firstName: user.firstName,

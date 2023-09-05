@@ -1,39 +1,69 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { Store } from "../Store";
+import { useLoginMutation } from "../hooks/userHooks";
+import { getError } from "../utils/getError";
+import { ApiError } from "../types/ApiError";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/";
+
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+
+  const { mutateAsync: login, isLoading } = useLoginMutation();
+
+  localStorage.clear();
+
+  const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const data = await axios
-        .post("http://localhost:8000/user/login", {
-          email: email,
-          password: password,
-        })
-        .then(function () {
-          setTimeout(() => {
-            navigation("/");
-          }, 1000);
-          localStorage.setItem("userInfo", JSON.stringify(data));
-          toast.success("Giriş yapıldı!");
-        });
-    } catch (error) {
-      console.log(error);
-      toast.error("Giriş yapılamadı!");
+      const data = await login({
+        email,
+        password,
+      });
+      if (data.token) {
+        dispatch({ type: "USER_SIGNIN", payload: data });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        toast.success("Login successfully");
+        setTimeout(() => {
+          navigate(redirect || "/");
+        }, 3000);
+      }
+    } catch (err) {
+      toast.error(getError(err as ApiError));
     }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
   return (
     <section className="bg-black">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
@@ -46,7 +76,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-200 md:text-2xl ">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
               <div>
                 <label
                   htmlFor="email"
@@ -83,38 +113,18 @@ const Login = () => {
                   required
                 />
               </div>
-              {/* <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
-                      required
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-gray-200 hover:underline"
-                >
-                  Forgot password?
-                </a>
-              </div> */}
               <button
+                disabled={isLoading}
                 type="submit"
-                className="w-full border text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full border text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 flex justify-center items-center"
               >
-                Sign in
+                {isLoading ? (
+                  <span>
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                  </span>
+                ) : (
+                  <span>Sign in</span>
+                )}
               </button>
               <p className="text-sm font-light text-gray-400 ">
                 Don’t have an account yet?{" "}
