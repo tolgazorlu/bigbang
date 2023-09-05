@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="#">
     <img src="/bigbang.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -12,12 +12,12 @@
   <p align="center">
     MERN STACK E-COMMERCE PROJECT
     <br />
-    <a href="https://bigbang-weld.vercel.app"><strong>View Demo</strong></a>
+    <a href="https://github.com/tolgazorlu/bigbang"><strong>View Demo (Soon)</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/tolgazorlu/bigbang/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/tolgazorlu/bigbang/issues">Request Feature</a>
   </p>
 </div>
 
@@ -37,12 +37,10 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#contribute-to-the-project">Contribute to the project</a></li>
+    <li><a href="#acknowledgments">Contribute to the project</a></li>
   </ol>
 </details>
 
@@ -54,9 +52,9 @@
 
 We implemented the **BigBang** application using **React, NodeJS, Express, MongoDB, Typescript, Tailwind** technologies. **Bigbang** is an imaginary e-commerce project where you can buy planets, stars, meteorites from every point of the universe, somewhere in the future.
 
-### Turkish
+### Türkçe
 
-**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını hayata geçirdik. **Bigbang**, gelecekte bir yerlerde, evrenin her köşesinden gezegenler, yıldızlar, göktaşları alabildiğiniz, hayali bir e-ticaret projesidir.
+**React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını geliştirdim. **Bigbang** bir e-ticaret projesidir.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
