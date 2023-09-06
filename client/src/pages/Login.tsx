@@ -37,6 +37,9 @@ const Login = () => {
           navigate(redirect || "/");
         }, 3000);
       }
+      else{
+        toast.error("Invalid email or password")
+      }
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
@@ -49,7 +52,7 @@ const Login = () => {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <section className="bg-black">
+    <section className="bg-white">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -62,23 +65,23 @@ const Login = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-[90vh] lg:py-0">
         <a
           href="#"
-          className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-100"
+          className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-700"
         >
           Bigbang
         </a>
         <div className="w-full rounded-lg shadow border dark:border md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-200 md:text-2xl ">
-              Sign in to your account
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-500 md:text-2xl ">
+              Login to your account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-600"
                 >
                   Your email
                 </label>
@@ -88,7 +91,7 @@ const Login = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-900 border border-gray-300 text-gray-200 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                  className="bg-slate-200 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder:text-gray-500"
                   placeholder="name@mail.com"
                   required
                 />
@@ -96,7 +99,7 @@ const Login = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-200 "
+                  className="block mb-2 text-sm font-medium text-gray-600 "
                 >
                   Password
                 </label>
@@ -106,7 +109,7 @@ const Login = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="bg-gray-900 border border-gray-300 text-gray-200 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                  className="bg-slate-200 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder:text-gray-500"
                   placeholder="••••••••"
                   required
                 />
@@ -114,7 +117,7 @@ const Login = () => {
               <button
                 disabled={isLoading}
                 type="submit"
-                className="w-full border text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 flex justify-center items-center"
+                className="bg-blue-700 text-white w-full border bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 flex justify-center items-center"
               >
                 {isLoading ? (
                   <span>
@@ -128,7 +131,7 @@ const Login = () => {
                 Don’t have an account yet?{" "}
                 <a
                   href="/register"
-                  className="font-medium text-gray-300 hover:underline"
+                  className="font-medium text-blue-500 hover:underline"
                 >
                   Register
                 </a>

@@ -30,7 +30,7 @@ const ParallaxPage = () => {
       </ParallaxLayer>
       <ParallaxLayer offset={0} speed={2.5}>
         <img src={AstronoutImage} />
-        <div className="h-auto bg-black text-slate-300 p-24 font-space">
+        <div className="h-auto bg-black text-slate-300 p-24 font-poppins">
           <p>
             The year is 2123.
             <br />

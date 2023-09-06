@@ -18,7 +18,7 @@ const ValidationForm = ({
       <div>
         <label
           htmlFor="email"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600"
         >
           Email
         </label>
@@ -26,15 +26,15 @@ const ValidationForm = ({
           type="email"
           value={email}
           onChange={e => updateFields({ email: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-          placeholder="tolga@email.com"
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          placeholder="my@mail.com"
           required
         />
       </div>
       <div>
         <label
           htmlFor="password"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600"
         >
           Password
         </label>
@@ -42,7 +42,7 @@ const ValidationForm = ({
           type="password"
           value={password}
           onChange={e => updateFields({ password: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
           placeholder="********"
           required
         />
@@ -50,7 +50,7 @@ const ValidationForm = ({
       <div>
         <label
           htmlFor="confirmPassword"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600"
         >
           Confirm Password
         </label>
@@ -59,7 +59,7 @@ const ValidationForm = ({
           name="confirmPassword"
           value={confirmPassword}
           onChange={e => updateFields({ confirmPassword: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
           placeholder="********"
           required
         />

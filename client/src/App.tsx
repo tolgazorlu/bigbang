@@ -11,19 +11,19 @@ import ShoppingCart from "./pages/ShoppingCart";
 
 const App = () => {
   return (
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
         <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product/:slug" element={<SingleProduct />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashborad />} />
-        </Routes>
-      </BrowserRouter>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:slug" element={<SingleProduct />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashborad />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

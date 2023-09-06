@@ -35,7 +35,7 @@ const ShoppingCart = () => {
   console.log(cartItems);
 
   return cartItems.length > 0 ? (
-    <div className="sm:px-14">
+    <div className="sm:px-14 bg-white">
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -51,11 +51,10 @@ const ShoppingCart = () => {
       <Helmet>
         <title>Complete your order...</title>
       </Helmet>
-      <div className="w-full h-12"></div>
       <div className="w-full h-32 flex justify-start items-center">
         <div className="flex flex-col">
-          <span className="font-bold text-gray-200 text-3xl font-space flex justify-center xl:justify-start">
-            Shopping Cart
+          <span className="font-extrabold text-gray-800 text-3xl font-poppins flex justify-center xl:justify-start">
+           <span> Shopping Cart </span>
           </span>
         </div>
       </div>
@@ -172,7 +171,7 @@ const ShoppingCart = () => {
       <Footer />
     </div>
   ) : (
-    <div className="sm:px-14">
+    <div className="sm:px-14 bg-white">
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -188,10 +187,10 @@ const ShoppingCart = () => {
       <Helmet>
         <title>Go to shopping</title>
       </Helmet>
-      <div className="w-full h-[80vh] flex justify-center items-center text-white bg-black">
+      <div className="w-full h-[90vh] flex justify-center items-center text-white">
         <div className="w-full flex justify-center items-center flex-col gap-10">
           <Lottie className="w-full h-48" animationData={EmptyCart} />
-          <span className="font-space text-3xl">
+          <span className="font-space text-3xl text-gray-700">
             Your shopping cart is empty!
           </span>
         </div>

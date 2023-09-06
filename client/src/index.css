@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: black;
-}
-
 @font-face {
   font-family: Space;
   src: url("assets/fonts/death-star.otf") format("opentype");
@@ -15,6 +11,17 @@ body {
   font-family: Inter;
   src: url("assets/fonts/Inter-Regular.ttf") format("opentype");
 }
+
+@font-face {
+  font-family: Poppins;
+  src: url("assets/fonts/poppins-regular.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: PoppinsSB;
+  src: url("assets/fonts/poppins-semibold.ttf") format("opentype");
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: #888;

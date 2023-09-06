@@ -18,7 +18,7 @@ const UserForm = ({
       <div>
         <label
           htmlFor="firstName"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600 "
         >
           First Name
         </label>
@@ -26,7 +26,7 @@ const UserForm = ({
           type="text"
           value={firstName}
           onChange={e => updateFields({ firstName: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
           placeholder="Tolga"
           required
         />
@@ -34,7 +34,7 @@ const UserForm = ({
       <div>
         <label
           htmlFor="lastName"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600 "
         >
           Last Name
         </label>
@@ -43,7 +43,7 @@ const UserForm = ({
           name="lastName"
           value={lastName}
           onChange={e => updateFields({ lastName: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
           placeholder="Zorlu"
           required
         />
@@ -51,7 +51,7 @@ const UserForm = ({
       <div>
         <label
           htmlFor="phoneNumber"
-          className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-600"
         >
           Phone Number
         </label>
@@ -60,7 +60,7 @@ const UserForm = ({
           name="phoneNumber"
           value={phoneNumber}
           onChange={e => updateFields({ phoneNumber: e.target.value })}
-          className="bg-gray-900 border border-gray-300 text-gray-200  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+          className="bg-slate-200 border border-gray-300 text-gray-700  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
           placeholder="05555555555"
           required
         />

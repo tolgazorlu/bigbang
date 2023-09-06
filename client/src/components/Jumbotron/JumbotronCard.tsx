@@ -2,7 +2,7 @@ import { ContentListProps } from "./JumbotronListProps";
 
 const JumbotronCard = ({ content }: ContentListProps) => {
   return (
-    <div className="border border-gray-200 rounded-lg p-8 md:p-8 font-inter">
+    <div className="border border-gray-200 rounded-lg p-8 md:p-8 font-poppins">
       <a className="bg-gray-700 text-purple-400 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2">
         {content.step}
       </a>

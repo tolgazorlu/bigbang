@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer p-10 text-slate-400 bg-black font-space">
+    <footer className="footer p-10 text-slate-700 font-poppins">
       <div>
         <p>
           BIGBANG TEAM

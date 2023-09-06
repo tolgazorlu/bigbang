@@ -61,6 +61,7 @@ module.exports.Login = async (req: Request, res: Response, next: NextFunction) =
             lastName: user.lastName,
             email: user.email,
             isAdmin: user.isAdmin,
+            avatar: user.avatar,
             token: generateToken(user)
          });
         next()

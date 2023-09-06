@@ -30,7 +30,7 @@ export class User{
     @prop({required: true})
     public password!: string
 
-    @prop({required: false})
+    @prop({required: false, default: 'https://imageupload.io/ib/3oXStgvAko9IBAp_1693943124.png'})
     public avatar!: string
 
     @prop({ required: true, default: false })
