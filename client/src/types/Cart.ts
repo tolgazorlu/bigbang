@@ -2,6 +2,7 @@ export type CartItem = {
     quantity: number,
     _id: string,
     name: string,
+    detail: string,
     slug: string,
     price: number,
     image: string | undefined
