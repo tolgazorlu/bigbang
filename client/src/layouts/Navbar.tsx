@@ -1,8 +1,10 @@
 import { Fragment, useState, useContext } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Dialog, Menu, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   ShoppingBagIcon,
+  UserCircleIcon,
+  UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Store } from "../Store";
@@ -11,8 +13,8 @@ import { Link } from "react-router-dom";
 const navigation = {
   categories: [
     {
-      id: "women",
-      name: "Women",
+      id: "milky-way-galaxy",
+      name: "Milky Way",
       featured: [
         {
           name: "New Arrivals",
@@ -73,8 +75,8 @@ const navigation = {
       ],
     },
     {
-      id: "men",
-      name: "Men",
+      id: "andromeda",
+      name: "Andromeda",
       featured: [
         {
           name: "New Arrivals",
@@ -492,21 +494,183 @@ export default function Navbar() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link
-                    to="/login"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Login
-                  </Link>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <Link
-                    to="/register"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Register
-                  </Link>
-                </div>
+                {userInfo ? (
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Menu as="div" className="relative inline-block text-left">
+                      <Menu.Button>
+                        <img
+                          alt="User dropdown"
+                          className="w-6 h-6 rounded-full mt-2 ring ring-blue-700"
+                          src={userInfo.avatar}
+                        />
+                      </Menu.Button>
+
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div className="py-1">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <div className="px-4 py-3 text-sm text-gray-900 flex items-center justify-between">
+                                  <div>
+                                    <div>
+                                      {userInfo.firstName} {userInfo.lastName}
+                                    </div>
+                                    <div className="font-medium truncate">
+                                      {userInfo.email}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <img
+                                      alt="User dropdown"
+                                      className="w-10 h-10 rounded-full ring ring-blue-700"
+                                      src={userInfo.avatar}
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                            </Menu.Item>
+                            <hr></hr>
+                            { userInfo.isAdmin ? (<Link to="/dashboard" className="w-full">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <button
+                                    type="submit"
+                                    className={classNames(
+                                      active
+                                        ? "bg-gray-100 text-gray-900"
+                                        : "text-gray-700",
+                                      "block w-full px-4 py-2 text-left text-sm"
+                                    )}
+                                  >
+                                    Dashboard
+                                  </button>
+                                )}
+                              </Menu.Item>
+                            </Link>) : (<></>)}
+                            <Link to="/profile" className="w-full">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <button
+                                    type="submit"
+                                    className={classNames(
+                                      active
+                                        ? "bg-gray-100 text-gray-900"
+                                        : "text-gray-700",
+                                      "block w-full px-4 py-2 text-left text-sm"
+                                    )}
+                                  >
+                                    Profile
+                                  </button>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <button onClick={signoutHandler} className="w-full">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <button
+                                    type="submit"
+                                    className={classNames(
+                                      active
+                                        ? "bg-gray-100 text-gray-900"
+                                        : "text-gray-700",
+                                      "block w-full px-4 py-2 text-left text-sm"
+                                    )}
+                                  >
+                                    Sign out
+                                  </button>
+                                )}
+                              </Menu.Item>
+                            </button>
+                          </div>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                    {/* <img
+                      alt="User dropdown"
+                      className="w-6 h-6 rounded-full"
+                      src={userInfo.avatar}
+                    />
+                    <div
+                      id="userDropdown"
+                      className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                    >
+                      <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                        <div>Bonnie Green</div>
+                        <div className="font-medium truncate">
+                          name@flowbite.com
+                        </div>
+                      </div>
+                      <ul
+                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="avatarButton"
+                      >
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Dashboard
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Settings
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Earnings
+                          </a>
+                        </li>
+                      </ul>
+                      <div className="py-1">
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        >
+                          Sign out
+                        </a>
+                      </div>
+                    </div> */}
+                    {/* <button
+                      onClick={signoutHandler}
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      Logout
+                    </button> */}
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                  </div>
+                ) : (
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Link
+                      to="/login"
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      Login
+                    </Link>
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                    <Link
+                      to="/register"
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                )}
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">

@@ -15,7 +15,7 @@ const Login = () => {
 
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/";
+  const redirect = redirectInUrl ? redirectInUrl : "/shop";
 
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
