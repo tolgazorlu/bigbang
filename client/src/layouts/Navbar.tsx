@@ -3,8 +3,6 @@ import { Dialog, Menu, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   ShoppingBagIcon,
-  UserCircleIcon,
-  UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Store } from "../Store";
@@ -137,6 +135,8 @@ const navigation = {
   pages: [
     { name: "Company", href: "/" },
     { name: "Stores", href: "/shop" },
+    // { name: "About", href: "/about" },
+    // { name: "Contact", href: "/contact" },
   ],
 };
 
@@ -517,7 +517,7 @@ export default function Navbar() {
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <div className="py-1">
                             <Menu.Item>
-                              {({ active }) => (
+                              {() => (
                                 <div className="px-4 py-3 text-sm text-gray-900 flex items-center justify-between">
                                   <div>
                                     <div>
@@ -538,23 +538,27 @@ export default function Navbar() {
                               )}
                             </Menu.Item>
                             <hr></hr>
-                            { userInfo.isAdmin ? (<Link to="/dashboard" className="w-full">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    type="submit"
-                                    className={classNames(
-                                      active
-                                        ? "bg-gray-100 text-gray-900"
-                                        : "text-gray-700",
-                                      "block w-full px-4 py-2 text-left text-sm"
-                                    )}
-                                  >
-                                    Dashboard
-                                  </button>
-                                )}
-                              </Menu.Item>
-                            </Link>) : (<></>)}
+                            {userInfo.isAdmin ? (
+                              <Link to="/dashboard" className="w-full">
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <button
+                                      type="submit"
+                                      className={classNames(
+                                        active
+                                          ? "bg-gray-100 text-gray-900"
+                                          : "text-gray-700",
+                                        "block w-full px-4 py-2 text-left text-sm"
+                                      )}
+                                    >
+                                      Dashboard
+                                    </button>
+                                  )}
+                                </Menu.Item>
+                              </Link>
+                            ) : (
+                              <></>
+                            )}
                             <Link to="/profile" className="w-full">
                               <Menu.Item>
                                 {({ active }) => (
@@ -593,65 +597,6 @@ export default function Navbar() {
                         </Menu.Items>
                       </Transition>
                     </Menu>
-                    {/* <img
-                      alt="User dropdown"
-                      className="w-6 h-6 rounded-full"
-                      src={userInfo.avatar}
-                    />
-                    <div
-                      id="userDropdown"
-                      className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-                    >
-                      <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div>Bonnie Green</div>
-                        <div className="font-medium truncate">
-                          name@flowbite.com
-                        </div>
-                      </div>
-                      <ul
-                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="avatarButton"
-                      >
-                        <li>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Dashboard
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Settings
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Earnings
-                          </a>
-                        </li>
-                      </ul>
-                      <div className="py-1">
-                        <a
-                          href="#"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                        >
-                          Sign out
-                        </a>
-                      </div>
-                    </div> */}
-                    {/* <button
-                      onClick={signoutHandler}
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      Logout
-                    </button> */}
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   </div>
                 ) : (

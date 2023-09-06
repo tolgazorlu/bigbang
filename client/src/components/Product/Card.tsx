@@ -27,7 +27,7 @@ const Card = (props: { content: Product }) => {
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
       <Link to={'/product/' + props.content.slug}>
         <img
-          className="p-8 rounded-t-lg"
+          className="py-2 px-16 rounded-t-lg"
           src={props.content.image}
           alt="product image"
         />

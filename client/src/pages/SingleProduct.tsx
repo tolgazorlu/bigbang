@@ -19,20 +19,20 @@ const SingleProduct = () => {
     isLoading,
     error,
   } = useGetProductDetailsBySlugQuery(slug!);
-  const { state, dispatch } = useContext(Store)
-  const { cart } = state
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
 
   const addToCartHandler = () => {
-    const existItem = cart.cartItems.find((x) => x._id === product!._id)
-    const quantity = existItem ? existItem.quantity + 1 : 1
+    const existItem = cart.cartItems.find((x) => x._id === product!._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
     dispatch({
-      type: 'CART_ADD_ITEM',
+      type: "CART_ADD_ITEM",
       payload: { ...convertProductToCartItem(product!), quantity },
-    })
-    toast.success('Product added to the cart')
-    navigate('/')
-  }
-  
+    });
+    toast.success("Product added to the cart");
+    navigate("/shop");
+  };
+
   return isLoading ? (
     <Loading />
   ) : error ? (
@@ -40,44 +40,33 @@ const SingleProduct = () => {
   ) : !product ? (
     <ErrorMessage>Product Not Found!</ErrorMessage>
   ) : (
-    <div className="px-12">
-      <div className="w-full h-24"></div>
-      <div className="md:px-32 justify-start items-center grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="px-4 bg-white">
+      <div className="md:px-12 py-4 justify-start grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="bg-black px-32 py-12 w-full rounded-md">
         <img className="w-full" src={product.image} />
+        </div>
         <div className="flex flex-col">
-          <span className="font-bold text-gray-200 text-3xl font-space">
+          <Rating rating={product.rating} />
+          <span className="font-bold text-gray-700 text-3xl font-space">
             {product.name}
           </span>
+          <span className="font-poppins font-bold text-gray-500">
+            {product.category}
+          </span>
           <br></br>
-          <span className="font-bold text-gray-400 w-full text-md font-space">
+          <span className="font-bold text-gray-500 w-full text-md font-poppins">
             {product.detail}
           </span>
           <br></br>
-          <span className="text-gray-600 w-full text-md font-space">
-            Category : {product.category}
-          </span>
-          <br></br>
-          <span className="text-gray-600 w-full text-md font-space">
-            Age : {product.age}
-          </span>
-          <br></br>
-          <span className="text-gray-600 w-full text-md font-space">
-            Rating : {product.rating}
-          </span>
-          <br></br>
-          <Rating rating={product.rating} />
-          <br></br>
-          <span className="text-gray-600 w-full text-md font-space">
-            Price : {product.price} Cosmic Token
-          </span>
-          <br></br>
-          <button onClick={addToCartHandler} className="btn-sm flex items-center justify-center bg-yellow-500 text-black w-64 rounded-md font-bold">
-            Add to Cart
+          <button
+            onClick={addToCartHandler}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+          >
+            ${product.price}
           </button>
         </div>
       </div>
-      <hr className="mt-10 h-px bg-gray-500 border-0 w-full" />
-      <div className="bg-black w-full grid grid-cols-4 gap-4 mt-12 mb-12"></div>
+      <hr className="mt-10 h-px bg-gray-300 border-0 w-full" />
       <Footer />
     </div>
   );

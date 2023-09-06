@@ -68,7 +68,7 @@ const ShoppingCart = () => {
             >
               <div className="h-full w-full flex">
                 <img
-                  className="h-full w-[24vh] p-4 img-fluid img-thumbnail bg-gray-100"
+                  className="h-full w-[24vh] p-4 img-fluid img-thumbnail bg-gray-100 rounded-md"
                   src={item.image}
                   alt={item.name}
                 ></img>
@@ -157,7 +157,7 @@ const ShoppingCart = () => {
               </Link>
               <Link
                 className="p-2 btn-sm flex items-center justify-center text-blue-500 w-full rounded-md"
-                to={"/"}
+                to={"/shop"}
               >
                 or continue shopping
               </Link>
@@ -190,6 +190,7 @@ const ShoppingCart = () => {
           <span className="font-space text-3xl text-gray-700">
             Your shopping cart is empty!
           </span>
+          <Link className="font-space text-2xl text-blue-500" to="/shop">Go to shopping</Link>
         </div>
       </div>
       <Footer />

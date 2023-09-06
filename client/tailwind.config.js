@@ -22,5 +22,5 @@ export default {
       "poppins-sb": "PoppinsSB",
     },
   },
-  plugins: [require("daisyui"), require("@tailwindcss/aspect-ratio")],
+  plugins: [require("daisyui"), require("@tailwindcss/aspect-ratio", require('@tailwindcss/forms'))],
 };
