@@ -4,10 +4,7 @@ import { getError } from "../utils/getError";
 import { ApiError } from "../types/ApiError";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
-import { Helmet } from "react-helmet-async";
-import Footer from "../layouts/Footer";
 import { Product } from "../types/ProductType";
-import { ToastContainer } from "react-toastify";
 import { useContext } from "react";
 import { Store } from "../Store";
 import { Fragment, useState } from "react";
@@ -69,7 +66,7 @@ export default function Shop() {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { userInfo } = state;
 
   return (
@@ -202,7 +199,7 @@ export default function Shop() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-12">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New collections
+               {userInfo ? `New collections for ${userInfo.firstName} ${userInfo.lastName}` : 'New collections'}
             </h1>
 
             <div className="flex items-center">

@@ -6,7 +6,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Store } from "../Store";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navigation = {
   categories: [
@@ -161,8 +161,10 @@ export default function Navbar() {
     window.location.href = "/login";
   };
 
+  const location = useLocation().pathname;
+
   return (
-    <div className="bg-white">
+    <div className={location === "/" ? "bg-black" : "bg-white"}>
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -339,12 +341,20 @@ export default function Navbar() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
+      <header
+        className={location === "/" ? "relative bg-black" : "relative bg-white"}
+      >
         <nav
           aria-label="Top"
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <div className="border-b border-gray-200">
+          <div
+            className={
+              location === "/"
+                ? "border-b border-gray-700"
+                : "border-b border-gray-200"
+            }
+          >
             <div className="flex h-16 items-center">
               <button
                 type="button"
@@ -359,11 +369,13 @@ export default function Navbar() {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <a href="#" className="flex items-center gap-2">
-                  <img
-                    className="h-8 w-8"
-                    src="https://imageupload.io/ib/uyxtA4y1d1wcLgK_1693993204.png"
-                  />
-                  <span className="text-gray-700 text-xl font-space">
+                  <span
+                    className={
+                      location === "/"
+                        ? "text-gray-300 text-xl font-space"
+                        : "text-gray-700 text-xl font-space"
+                    }
+                  >
                     Bigbang
                   </span>
                 </a>
@@ -381,8 +393,11 @@ export default function Navbar() {
                               className={classNames(
                                 open
                                   ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                  : "border-transparent  hover:text-gray-800",
+                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out",
+                                location === "/"
+                                  ? "text-gray-200"
+                                  : "text-gray-700"
                               )}
                             >
                               {category.name}
@@ -485,7 +500,11 @@ export default function Navbar() {
                     <a
                       key={page.name}
                       href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className={
+                        location === "/"
+                          ? "flex items-center text-sm font-medium text-gray-200 hover:text-gray-50"
+                          : "flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      }
                     >
                       {page.name}
                     </a>
@@ -603,14 +622,22 @@ export default function Navbar() {
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                     <Link
                       to="/login"
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className={
+                        location === "/"
+                          ? "text-sm font-medium text-gray-300 hover:text-gray-50"
+                          : "text-sm font-medium text-gray-700 hover:text-gray-800"
+                      }
                     >
                       Login
                     </Link>
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                     <Link
                       to="/register"
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className={
+                        location === "/"
+                          ? "text-sm font-medium text-gray-300 hover:text-gray-50"
+                          : "text-sm font-medium text-gray-700 hover:text-gray-800"
+                      }
                     >
                       Register
                     </Link>
@@ -625,11 +652,23 @@ export default function Navbar() {
                       aria-hidden="true"
                     />
                     {cart.cartItems.length > 0 ? (
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                      <span
+                        className={
+                          location === "/"
+                            ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                            : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                        }
+                      >
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                       </span>
                     ) : (
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                      <span
+                        className={
+                          location === "/"
+                            ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                            : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                        }
+                      >
                         0
                       </span>
                     )}

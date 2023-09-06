@@ -5,7 +5,6 @@ import { CartItem } from "../types/Cart";
 import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import {
-  AiFillDelete,
   AiFillMinusCircle,
   AiFillPlusCircle,
 } from "react-icons/ai";
@@ -82,7 +81,7 @@ const ShoppingCart = () => {
                     </div>
                   </div>
                   <div className="w-full p-2">
-                    <span className="text-gray-500">{item.detail}</span>
+                    <span className="text-gray-500">{(item.detail).substring(0,125)}...</span>
                   </div>
                   <div className="w-full p-2">
                     <div className="flex items-center justify-between">
