@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import { CartItem } from "../types/Cart";
 import { Helmet } from "react-helmet-async";
@@ -10,6 +10,8 @@ import EmptyCart from "../assets/animation/cart.json";
 import Lottie from "lottie-react";
 
 const ShoppingCart = () => {
+
+  const navigate = useNavigate()
 
   const {
     state: {
@@ -28,6 +30,10 @@ const ShoppingCart = () => {
   const removeItemHandler = (item: CartItem) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=/shipping')
+  }
 
   const subTotal = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
   const tax =  subTotal * 18 / 100
@@ -155,12 +161,12 @@ const ShoppingCart = () => {
               </li>
             </ul>
             <div className="h-1/6 px-8">
-              <Link
+              <button
                 className="p-5 btn-sm flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white w-full rounded-md font-bold"
-                to={"/checkout/"}
+                onClick={checkoutHandler}
               >
                 Checkout
-              </Link>
+              </button>
               <Link
                 className="p-2 btn-sm flex items-center justify-center text-blue-500 w-full rounded-md"
                 to={"/shop"}
