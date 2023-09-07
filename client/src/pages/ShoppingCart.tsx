@@ -1,18 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Store } from "../Store";
 import { CartItem } from "../types/Cart";
 import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
-import {
-  AiFillMinusCircle,
-  AiFillPlusCircle,
-} from "react-icons/ai";
+import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import EmptyCart from "../assets/animation/cart.json";
 import Lottie from "lottie-react";
 
 const ShoppingCart = () => {
+
   const {
     state: {
       cart: { cartItems },
@@ -30,6 +28,11 @@ const ShoppingCart = () => {
   const removeItemHandler = (item: CartItem) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
+
+  const subTotal = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+  const tax =  subTotal * 18 / 100
+  const shippingPrice = 5;
+  const orderTotal = subTotal + tax + shippingPrice
 
   return cartItems.length > 0 ? (
     <div className="sm:px-14 bg-white">
@@ -75,11 +78,15 @@ const ShoppingCart = () => {
                       <span className="text-gray-700 font-bold">
                         {item.name}
                       </span>
-                      <span className="text-gray-700 font-bold">${item.price}</span>
+                      <span className="text-gray-700 font-bold">
+                        ${item.price}
+                      </span>
                     </div>
                   </div>
                   <div className="w-full p-2">
-                    <span className="text-gray-500">{(item.detail).substring(0,125)}...</span>
+                    <span className="text-gray-500">
+                      {item.detail.substring(0, 125)}...
+                    </span>
                   </div>
                   <div className="w-full p-2">
                     <div className="flex items-center justify-between">
@@ -108,14 +115,14 @@ const ShoppingCart = () => {
                   </div>
                   <div className="w-full p-2 flex justify-end my-auto items-end">
                     <button
-                        className="p-1"
-                        onClick={() => {
-                          removeItemHandler(item);
-                          toast.info("Product removed from cart");
-                        }}
-                      >
-                        <span className="text-red-500">Remove</span>
-                      </button>
+                      className="p-1"
+                      onClick={() => {
+                        removeItemHandler(item);
+                        toast.info("Product removed from cart");
+                      }}
+                    >
+                      <span className="text-red-500">Remove</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -130,19 +137,21 @@ const ShoppingCart = () => {
             <ul className="h-4/6 text-md ">
               <li className="py-4 flex text-gray-600 justify-between items-center border-b-[0.3px]">
                 <span>Subtotal</span>
-                <span>$99.00</span>
+                <span>${subTotal}</span>
               </li>
               <li className="py-4 flex text-gray-600 justify-between items-center border-b-[0.3px]">
                 <span>Shipping Estimate</span>
-                <span>$5.00</span>
+                <span>${shippingPrice}</span>
               </li>
               <li className="py-4 flex text-gray-600 justify-between items-center border-b-[0.3px]">
                 <span>Tax Estimate</span>
-                <span>$8.32</span>
+                <span>${tax}</span>
               </li>
               <li className="py-4 flex text-gray-600 justify-between items-center ">
                 <span className="font-semibold">Order Total</span>
-                <span className="font-semibold">$112.32</span>
+                <span className="font-semibold">
+                  ${orderTotal.toFixed(2)}
+                </span>
               </li>
             </ul>
             <div className="h-1/6 px-8">
@@ -187,7 +196,9 @@ const ShoppingCart = () => {
           <span className="font-space text-3xl text-gray-700">
             Your shopping cart is empty!
           </span>
-          <Link className="font-space text-2xl text-blue-500" to="/shop">Go to shopping</Link>
+          <Link className="font-space text-2xl text-blue-500" to="/shop">
+            Go to shopping
+          </Link>
         </div>
       </div>
       <Footer />
