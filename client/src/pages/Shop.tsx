@@ -17,6 +17,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import Footer from "../layouts/Footer";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -132,7 +133,7 @@ export default function Shop() {
                       ))}
                     </ul>
 
-                    {filters.map((section) => (
+                    {/* {filters.map((section) => (
                       <Disclosure
                         as="div"
                         key={section.id}
@@ -188,7 +189,7 @@ export default function Shop() {
                           </>
                         )}
                       </Disclosure>
-                    ))}
+                    ))} */}
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -286,7 +287,7 @@ export default function Shop() {
                   ))}
                 </ul>
 
-                {filters.map((section) => (
+                {/* {filters.map((section) => (
                   <Disclosure
                     as="div"
                     key={section.id}
@@ -342,7 +343,7 @@ export default function Shop() {
                       </>
                     )}
                   </Disclosure>
-                ))}
+                ))} */}
               </form>
 
               {/* Product grid */}
@@ -363,6 +364,7 @@ export default function Shop() {
           </section>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }
