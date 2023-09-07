@@ -31,8 +31,6 @@ const ShoppingCart = () => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
-  console.log(cartItems);
-
   return cartItems.length > 0 ? (
     <div className="sm:px-14 bg-white">
       <ToastContainer
@@ -58,7 +56,7 @@ const ShoppingCart = () => {
         </div>
       </div>
       <hr className="h-px bg-gray-500 w-7/12" />
-      <div className="grid grid-cols-12 gap-5">
+      <div className="grid lg:grid-cols-12 gap-5">
         <ul className="col-span-7">
           {cartItems.map((item: CartItem) => (
             <li

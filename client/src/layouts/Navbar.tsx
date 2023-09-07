@@ -133,7 +133,7 @@ const navigation = {
     },
   ],
   pages: [
-    { name: "Company", href: "/" },
+    { name: "Project", href: "/" },
     { name: "Stores", href: "/shop" },
     // { name: "About", href: "/about" },
     // { name: "Contact", href: "/contact" },
