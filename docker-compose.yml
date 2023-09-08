@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: bigbang-server
+    container_name: bigbang-be
+    command: npm run dev
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+      - MONGO_URI=mongodb://127.0.0.1:27017/bigbang
+    networks:
+      - app-network
+  mongo:
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: bigbang-client
+    container_name: bigbang-client
+    command: npm run dev
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
