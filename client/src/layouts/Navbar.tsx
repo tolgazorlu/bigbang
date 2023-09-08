@@ -1,11 +1,11 @@
 import { Fragment, useState, useContext } from "react";
-import { Dialog, Menu, Popover, Tab, Transition } from "@headlessui/react";
+import { Dialog, Menu, Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { Link, useLocation } from "react-router-dom";
 
 const navigation = {
@@ -174,8 +174,6 @@ export default function Navbar() {
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
-                  
-
                   {navigation.pages.map((page) => (
                     <a
                       key={page.name}
@@ -193,8 +191,44 @@ export default function Navbar() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
+                {location === '/shop' ? (<form className="mr-4">
+                  <div className="relative flex gap-1">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="search"
+                      id="default-search"
+                      className="block w-full py-1.5 px-24 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                      placeholder="Search Product."
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="text-white right-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </form>) : <></>}
                 {userInfo ? (
+                  <>
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                     <Menu as="div" className="relative inline-block text-left">
                       <Menu.Button>
                         <img
@@ -296,37 +330,12 @@ export default function Navbar() {
                         </Menu.Items>
                       </Transition>
                     </Menu>
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   </div>
-                ) : (
-                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <Link
-                      to="/login"
-                      className={
-                        location === "/"
-                          ? "text-sm font-medium text-gray-300 hover:text-gray-50"
-                          : "text-sm font-medium text-gray-700 hover:text-gray-800"
-                      }
-                    >
-                      Login
-                    </Link>
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <Link
-                      to="/register"
-                      className={
-                        location === "/"
-                          ? "text-sm font-medium text-gray-300 hover:text-gray-50"
-                          : "text-sm font-medium text-gray-700 hover:text-gray-800"
-                      }
-                    >
-                      Register
-                    </Link>
-                  </div>
-                )}
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <Link to="/cart" className="group -m-2 flex items-center p-2">
+                  <div className="ml-4 flow-root lg:ml-6">
+                  <Link
+                    to="/cart"
+                    className="group -m-2 flex items-center p-2"
+                  >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
@@ -354,7 +363,71 @@ export default function Navbar() {
                     )}
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
-                </div>
+                </div></>
+                ) : (
+                  <>
+                    <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                      <Link
+                        to="/login"
+                        className={
+                          location === "/"
+                            ? "text-sm font-medium text-gray-300 hover:text-gray-50"
+                            : "text-sm font-medium text-gray-700 hover:text-gray-800"
+                        }
+                      >
+                        Login
+                      </Link>
+                      <span
+                        className="h-6 w-px bg-gray-200"
+                        aria-hidden="true"
+                      />
+                      <Link
+                        to="/register"
+                        className={
+                          location === "/"
+                            ? "text-sm font-medium text-gray-300 hover:text-gray-50"
+                            : "text-sm font-medium text-gray-700 hover:text-gray-800"
+                        }
+                      >
+                        Register
+                      </Link>
+                    </div>
+
+                    <div className="ml-4 flow-root lg:ml-6">
+                      <Link
+                        to="/cart"
+                        className="group -m-2 flex items-center p-2"
+                      >
+                        <ShoppingBagIcon
+                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                          aria-hidden="true"
+                        />
+                        {cart.cartItems.length > 0 ? (
+                          <span
+                            className={
+                              location === "/"
+                                ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                                : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                            }
+                          >
+                            {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                          </span>
+                        ) : (
+                          <span
+                            className={
+                              location === "/"
+                                ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                                : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                            }
+                          >
+                            0
+                          </span>
+                        )}
+                        <span className="sr-only">items in cart, view bag</span>
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

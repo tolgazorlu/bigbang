@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { getError } from "../utils/getError";
 import { ApiError } from "../types/ApiError";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { convertProductToCartItem } from "../utils/ProductToCart";
 import { toast } from "react-toastify";
 

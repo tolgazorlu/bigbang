@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Product } from "../../types/ProductType";
 import Rating from "./Rating";
 import { useContext } from "react";
-import { Store } from "../../Store";
+import { Store } from "../../contexts/Store";
 import { CartItem } from "../../types/Cart";
 import { toast } from "react-toastify";
 import { convertProductToCartItem } from "../../utils/ProductToCart";

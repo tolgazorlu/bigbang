@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { CartItem } from "../types/Cart";
 import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";

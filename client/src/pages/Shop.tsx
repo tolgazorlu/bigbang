@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { Product } from "../types/ProductType";
 import { useContext } from "react";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { Fragment, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -198,45 +198,16 @@ export default function Shop() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-12">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-               {userInfo ? `New collections for ${userInfo.firstName} ${userInfo.lastName}` : 'New collections'}
+              {userInfo
+                ? `New collections for ${userInfo.firstName} ${userInfo.lastName}`
+                : "New collections"}
             </h1>
 
             <div className="flex items-center">
-              <Menu as="div" className="relative text-left flex items-center gap-4">
-              <form className="mr-4">
-                  <div className="relative flex gap-1">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg
-                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                      </svg>
-                    </div>
-                    <input
-                      type="search"
-                      id="default-search"
-                      className="block w-full py-1.5 px-24 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-                      placeholder="Search Product."
-                      required
-                    />
-                    <button
-                      type="submit"
-                      className="text-white right-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5"
-                    >
-                      Search
-                    </button>
-                  </div>
-                </form>
+              <Menu
+                as="div"
+                className="relative text-left flex items-center gap-4"
+              >
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort

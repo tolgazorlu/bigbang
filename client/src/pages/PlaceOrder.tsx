@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { useCreateOrderMutation } from "../hooks/orderHooks";
 import { getError } from "../utils/getError";
 import { ApiError } from "../types/ApiError";
@@ -65,15 +65,18 @@ export default function PlaceOrderPage() {
         pauseOnHover
         theme="light"
       />
+
       <Helmet>
         <title>Preview Order</title>
       </Helmet>
-      <div className="w-full h-32 flex justify-start items-center">
-        <div className="flex flex-col">
-          <span className="font-extrabold text-gray-800 text-3xl flex justify-center xl:justify-start">
-            <span> Preview Order </span>
-          </span>
-        </div>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+      <a
+          href="#"
+          className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-700 mt-12"
+        >
+          Place Order
+        </a>
+        <CheckoutSteps step1 step2 step3 step4/>
       </div>
       <hr className="h-px bg-gray-500 w-7/12" />
       <div className="grid lg:grid-cols-12 gap-5">
@@ -115,10 +118,7 @@ export default function PlaceOrderPage() {
             <br />
             <ul>
               {cart.cartItems.map((item: CartItem) => (
-                <li
-                  key={item._id}
-                  className="py-8 w-full border-gray-500"
-                >
+                <li key={item._id} className="py-8 w-full border-gray-500">
                   <div className="h-full w-full flex">
                     <img
                       className="h-full w-[24vh] p-4 img-fluid img-thumbnail bg-gray-100 rounded-md"
@@ -145,7 +145,7 @@ export default function PlaceOrderPage() {
                   </div>
                 </li>
               ))}
-            <Link to="/shop">Edit</Link>
+              <Link to="/shop">Edit</Link>
             </ul>
           </div>
         </div>

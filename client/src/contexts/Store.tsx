@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-case-declarations */
 import React from "react";
-import { Cart, CartItem, ShippingAddress } from "./types/Cart";
-import { UserInfo } from "./types/UserInfo";
-
-type AppState = {
-  userInfo?: UserInfo;
-  cart: Cart;
-};
+import { CartItem } from "../types/Cart";
+import { AppState } from "../types/AppState";
+import { Action } from "../types/Action";
 
 const initialState: AppState = {
   userInfo: localStorage.getItem("userInfo")
@@ -29,15 +25,6 @@ const initialState: AppState = {
     totalPrice: 0,
   },
 };
-
-type Action =
-  | { type: "CART_ADD_ITEM"; payload: CartItem }
-  | { type: "CART_REMOVE_ITEM"; payload: CartItem }
-  | { type: "CART_CLEAR" }
-  | { type: "USER_SIGNIN"; payload: UserInfo }
-  | { type: "USER_SIGNOUT" }
-  | { type: "SAVE_SHIPPING_ADDRESS"; payload: ShippingAddress }
-  | { type: "SAVE_PAYMENT_METHOD"; payload: string };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {

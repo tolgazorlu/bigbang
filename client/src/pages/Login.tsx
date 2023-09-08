@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Store } from "../Store";
+import { Store } from "../contexts/Store";
 import { useLoginMutation } from "../hooks/userHooks";
 import { getError } from "../utils/getError";
 import { ApiError } from "../types/ApiError";
