@@ -115,19 +115,19 @@ _Below is an example of how you can instruct your audience on installing and set
    npm install
    npm run dev
    ```
-3. Install server packages
-   ```sh
-   cd server
-   npm install
-   npm run dev
-   ```
-4. Enter your keys in `.env`
+3. Create '.env' file in server folder. Paste this code in file.
    ```sh
    PORT=8000
    MONGO_URI=example_mongodb_url
    BASE_CLIENT_URL=http://localhost:8080
    BASE_SERVER_URL=http://localhost:3000
    TOKEN_KEY=example_jwt_key
+   ```
+4. Install server packages
+   ```sh
+   cd server
+   npm install
+   npm run dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -159,7 +159,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Tolga Zorlu - [@twitter](https://twitter.com/tolgzorlu) - tolgazorlu17@gmail.com
+Tolga Zorlu - [@linkedin](https://www.linkedin.com/in/tolgazorlu/)
 
 Project Link: [https://github.com/tolgazorlu/bigbang](https://github.com/tolgazorlu/bigbang)
 
@@ -179,5 +179,13 @@ Use this space to list resources you find helpful and would like to give credit 
 * [TypeScript](https://www.typescriptlang.org/)
 * [JsonWebToken](https://jwt.io/)
 * [Eslint](https://eslint.org/)
+* [React Router Dom](https://reactrouter.com/en/main)
+* [React Context](https://react.dev/reference/react/useContext)
+* [DaisyUI](https://daisyui.com/)
+* [Flowbite](https://flowbite.com/)
+
+
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
