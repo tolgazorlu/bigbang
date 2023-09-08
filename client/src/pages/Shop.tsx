@@ -8,13 +8,11 @@ import { Product } from "../types/ProductType";
 import { useContext } from "react";
 import { Store } from "../Store";
 import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   FunnelIcon,
-  MinusIcon,
-  PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import Footer from "../layouts/Footer";
@@ -33,31 +31,31 @@ const subCategories = [
   { name: "SpaceShips", href: "#" },
   { name: "Elements", href: "#" },
 ];
-const filters = [
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
-    ],
-  },
-  {
-    id: "size",
-    name: "Size",
-    options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
-    ],
-  },
-];
+// const filters = [
+//   {
+//     id: "category",
+//     name: "Category",
+//     options: [
+//       { value: "new-arrivals", label: "New Arrivals", checked: false },
+//       { value: "sale", label: "Sale", checked: false },
+//       { value: "travel", label: "Travel", checked: true },
+//       { value: "organization", label: "Organization", checked: false },
+//       { value: "accessories", label: "Accessories", checked: false },
+//     ],
+//   },
+//   {
+//     id: "size",
+//     name: "Size",
+//     options: [
+//       { value: "2l", label: "2L", checked: false },
+//       { value: "6l", label: "6L", checked: false },
+//       { value: "12l", label: "12L", checked: false },
+//       { value: "18l", label: "18L", checked: false },
+//       { value: "20l", label: "20L", checked: false },
+//       { value: "40l", label: "40L", checked: true },
+//     ],
+//   },
+// ];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");

@@ -1,6 +1,8 @@
+import { Router } from "express"
+
 const {Register, Login} = require('../controllers/authController')
 const {UserVerification} = require('../middlewares/authMiddleware')
-const router = require('express').Router()
+const router: Router = require('express').Router()
 
 router.post('/', UserVerification)
 router.post('/register', Register)

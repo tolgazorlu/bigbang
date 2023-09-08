@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import ShoppingCart from "./pages/ShoppingCart";
 import ShippingAddressPage from "./pages/ShippingAddress";
 import Payment from "./pages/Payment";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PlaceOrderPage from "./pages/PlaceOrder";
 
 const App = () => {
   return (
@@ -22,8 +24,11 @@ const App = () => {
         <Route path="/product/:slug" element={<SingleProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/shipping" element={<ShippingAddressPage />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="" element={<ProtectedRoute />}>
+          <Route path="/shipping" element={<ShippingAddressPage />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/placeorder" element={<PlaceOrderPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
