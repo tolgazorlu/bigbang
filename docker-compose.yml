@@ -1,58 +1,50 @@
-version: '3.7'
+version: '3.8'
 
 services:
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - data:/data/db
+    ports: 
+      - "27017:27017"
+
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
-    image: bigbang-server
-    container_name: bigbang-be
-    command: npm run dev
-    volumes:
-      - ./server/:/usr/src/app
-      - /usr/src/app/node_modules
+    image: bigbang-server-image
+    container_name: bigbang-server-container
+    restart: always
     ports:
       - "8000:8000"
+    volumes: 
+      - ./server/build:/index
     depends_on:
-      - mongo
-    env_file: ./server/.env
+      - mongodb
+    networks:
+      - mern-network
     environment:
-      - NODE_ENV=development
-      - PORT=8000
-      - MONGO_URI=mongodb://127.0.0.1:27017/bigbang
-    networks:
-      - app-network
-  mongo:
-    image: mongo
-    volumes:
-      - data-volume:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - app-network
+      - MONGO_URI= "mongodb://127.0.0.1:27017/bigbang?directConnection=true"
+
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: bigbang-client
-    container_name: bigbang-client
+    image: bigbang-client-image
+    container_name: bigbang-client-container
     command: npm run dev
     volumes:
       - ./client/:/usr/app
-      - /usr/app/node_modules
     depends_on:
       - server
     ports:
       - "5173:5173"
     networks:
-      - app-network
+      - mern-network
 
 networks:
-    app-network:
+    mern-network:
         driver: bridge
 
 volumes:
-    data-volume:
-    node_modules:
-    web-root:
-      driver: local
+    data:

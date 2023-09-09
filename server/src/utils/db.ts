@@ -15,7 +15,7 @@ const setupDB = async () => {
         console.log(chalk.bgGreen("MongoDB Database connected!"));
       })
       .catch((error) => {
-        console.log(chalk.bgRed("MongoDB Database not connected!"));
+        console.log(chalk.bgRed(error));
       });
   } catch (error) {
     return null;
