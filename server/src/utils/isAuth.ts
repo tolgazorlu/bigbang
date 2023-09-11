@@ -1,3 +1,4 @@
+import chalk from "chalk"
 import { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
 
@@ -7,7 +8,7 @@ export const isAuth = (req: Request, res: Response, next: NextFunction) => {
         const token = authorization.slice(7, authorization.length) // Bearer xxxxx
         const decode = jwt.verify(
             token,
-            process.env.JWT_SECRET || 'somethingsecret'
+            process.env.TOKEN_KEY || 'somethingsecret'
         )
         req.user = decode as {
             _id: string

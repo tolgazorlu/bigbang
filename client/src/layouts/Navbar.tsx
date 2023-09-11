@@ -191,88 +191,118 @@ export default function Navbar() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                {location === '/shop' ? (<form className="mr-4">
-                  <div className="relative flex gap-1">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg
-                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
+                {location === "/shop" ? (
+                  <form className="mr-4">
+                    <div className="relative flex gap-1">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg
+                          className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                          />
+                        </svg>
+                      </div>
+                      <input
+                        type="search"
+                        id="default-search"
+                        className="block w-full py-1.5 px-24 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                        placeholder="Search Product."
+                        required
+                      />
+                      <button
+                        type="submit"
+                        className="text-white right-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5"
                       >
-                        <path
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                      </svg>
+                        Search
+                      </button>
                     </div>
-                    <input
-                      type="search"
-                      id="default-search"
-                      className="block w-full py-1.5 px-24 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-                      placeholder="Search Product."
-                      required
-                    />
-                    <button
-                      type="submit"
-                      className="text-white right-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5"
-                    >
-                      Search
-                    </button>
-                  </div>
-                </form>) : <></>}
+                  </form>
+                ) : (
+                  <></>
+                )}
                 {userInfo ? (
                   <>
-                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <Menu as="div" className="relative inline-block text-left">
-                      <Menu.Button>
-                        <img
-                          alt="User dropdown"
-                          className="w-6 h-6 rounded-full mt-2 ring ring-blue-700"
-                          src={userInfo.avatar}
-                        />
-                      </Menu.Button>
-
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
+                    <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                      <span
+                        className="h-6 w-px bg-gray-200"
+                        aria-hidden="true"
+                      />
+                      <Menu
+                        as="div"
+                        className="relative inline-block text-left"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <div className="py-1">
-                            <Menu.Item>
-                              {() => (
-                                <div className="px-4 py-3 text-sm text-gray-900 flex items-center justify-between">
-                                  <div>
+                        <Menu.Button>
+                          <img
+                            alt="User dropdown"
+                            className="w-6 h-6 rounded-full mt-4 ring ring-blue-700"
+                            src={userInfo.avatar}
+                          />
+                        </Menu.Button>
+
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="py-1">
+                              <Menu.Item>
+                                {() => (
+                                  <div className="px-4 py-3 text-sm text-gray-900 flex items-center justify-between">
                                     <div>
-                                      {userInfo.firstName} {userInfo.lastName}
+                                      <div>
+                                        {userInfo.firstName} {userInfo.lastName}
+                                      </div>
+                                      <div className="font-medium truncate">
+                                        {userInfo.email}
+                                      </div>
                                     </div>
-                                    <div className="font-medium truncate">
-                                      {userInfo.email}
+                                    <div>
+                                      <img
+                                        alt="User dropdown"
+                                        className="w-10 h-10 rounded-full ring ring-blue-700"
+                                        src={userInfo.avatar}
+                                      />
                                     </div>
                                   </div>
-                                  <div>
-                                    <img
-                                      alt="User dropdown"
-                                      className="w-10 h-10 rounded-full ring ring-blue-700"
-                                      src={userInfo.avatar}
-                                    />
-                                  </div>
-                                </div>
+                                )}
+                              </Menu.Item>
+                              <hr></hr>
+                              {userInfo.isAdmin ? (
+                                <Link to="/dashboard" className="w-full">
+                                  <Menu.Item>
+                                    {({ active }) => (
+                                      <button
+                                        type="submit"
+                                        className={classNames(
+                                          active
+                                            ? "bg-gray-100 text-gray-900"
+                                            : "text-gray-700",
+                                          "block w-full px-4 py-2 text-left text-sm"
+                                        )}
+                                      >
+                                        Dashboard
+                                      </button>
+                                    )}
+                                  </Menu.Item>
+                                </Link>
+                              ) : (
+                                <></>
                               )}
-                            </Menu.Item>
-                            <hr></hr>
-                            {userInfo.isAdmin ? (
-                              <Link to="/dashboard" className="w-full">
+                              <Link to="/profile" className="w-full">
                                 <Menu.Item>
                                   {({ active }) => (
                                     <button
@@ -284,86 +314,70 @@ export default function Navbar() {
                                         "block w-full px-4 py-2 text-left text-sm"
                                       )}
                                     >
-                                      Dashboard
+                                      Profile
                                     </button>
                                   )}
                                 </Menu.Item>
                               </Link>
-                            ) : (
-                              <></>
-                            )}
-                            <Link to="/profile" className="w-full">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    type="submit"
-                                    className={classNames(
-                                      active
-                                        ? "bg-gray-100 text-gray-900"
-                                        : "text-gray-700",
-                                      "block w-full px-4 py-2 text-left text-sm"
-                                    )}
-                                  >
-                                    Profile
-                                  </button>
-                                )}
-                              </Menu.Item>
-                            </Link>
-                            <button onClick={signoutHandler} className="w-full">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    type="submit"
-                                    className={classNames(
-                                      active
-                                        ? "bg-gray-100 text-gray-900"
-                                        : "text-gray-700",
-                                      "block w-full px-4 py-2 text-left text-sm"
-                                    )}
-                                  >
-                                    Sign out
-                                  </button>
-                                )}
-                              </Menu.Item>
-                            </button>
-                          </div>
-                        </Menu.Items>
-                      </Transition>
-                    </Menu>
-                  </div>
-                  <div className="ml-4 flow-root lg:ml-6">
-                  <Link
-                    to="/cart"
-                    className="group -m-2 flex items-center p-2"
-                  >
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    {cart.cartItems.length > 0 ? (
-                      <span
-                        className={
-                          location === "/"
-                            ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
-                            : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                        }
+                              <button
+                                onClick={signoutHandler}
+                                className="w-full"
+                              >
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <button
+                                      type="submit"
+                                      className={classNames(
+                                        active
+                                          ? "bg-gray-100 text-gray-900"
+                                          : "text-gray-700",
+                                        "block w-full px-4 py-2 text-left text-sm"
+                                      )}
+                                    >
+                                      Sign out
+                                    </button>
+                                  )}
+                                </Menu.Item>
+                              </button>
+                            </div>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
+                    <div className="ml-4 flow-root lg:ml-6">
+                      <Link
+                        to="/cart"
+                        className="group -m-2 flex items-center p-2"
                       >
-                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                      </span>
-                    ) : (
-                      <span
-                        className={
-                          location === "/"
-                            ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
-                            : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                        }
-                      >
-                        0
-                      </span>
-                    )}
-                    <span className="sr-only">items in cart, view bag</span>
-                  </Link>
-                </div></>
+                        <ShoppingBagIcon
+                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                          aria-hidden="true"
+                        />
+                        {cart.cartItems.length > 0 ? (
+                          <span
+                            className={
+                              location === "/"
+                                ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                                : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                            }
+                          >
+                            {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                          </span>
+                        ) : (
+                          <span
+                            className={
+                              location === "/"
+                                ? "ml-2 text-sm font-medium text-gray-200 group-hover:text-gray-800"
+                                : "ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                            }
+                          >
+                            0
+                          </span>
+                        )}
+                        <span className="sr-only">items in cart, view bag</span>
+                      </Link>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">

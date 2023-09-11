@@ -35,7 +35,7 @@ app.use(express.json());
 //ROUTES
 app.use('/product', productRoute);
 app.use('/user', authRoute)
-app.use('/orders', orderRoute)
+app.use('/order', orderRoute)
 
 //LISTEN
 app.listen(port, () => {

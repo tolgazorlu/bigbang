@@ -11,6 +11,7 @@ import ShippingAddressPage from "./pages/ShippingAddress";
 import Payment from "./pages/Payment";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PlaceOrderPage from "./pages/PlaceOrder";
+import Order from "./pages/Order";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/shipping" element={<ShippingAddressPage />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/placeorder" element={<PlaceOrderPage />} />
+          <Route path="/order/:id" element={<Order />} />
         </Route>
       </Routes>
     </BrowserRouter>
