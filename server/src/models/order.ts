@@ -34,16 +34,6 @@ class Item {
   public product?: Ref<Product>
 }
 
-class PaymentResult {
-  @prop()
-  public paymentId!: string
-  @prop()
-  public status!: string
-  @prop()
-  public update_time!: string
-  @prop()
-  public email_address!: string
-}
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class Order {
@@ -58,8 +48,7 @@ export class Order {
 
   @prop({ required: true })
   public paymentMethod!: string
-  @prop()
-  public paymentResult?: PaymentResult
+
   @prop({ required: true, default: 0 })
   public itemsPrice!: number
   @prop({ required: true, default: 0 })

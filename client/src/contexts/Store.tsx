@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable no-case-declarations */
 import React from "react";
 import { CartItem } from "../types/Cart";
 import { AppState } from "../types/AppState";

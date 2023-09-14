@@ -12,6 +12,7 @@ import Payment from "./pages/Payment";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PlaceOrderPage from "./pages/PlaceOrder";
 import Order from "./pages/Order";
+import OrderHistory from "./pages/OrderHistory";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/payment" element={<Payment />} />
           <Route path="/placeorder" element={<PlaceOrderPage />} />
           <Route path="/order/:id" element={<Order />} />
+          <Route path="/order/history" element={<OrderHistory />} />
         </Route>
       </Routes>
     </BrowserRouter>

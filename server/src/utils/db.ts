@@ -4,6 +4,8 @@ import chalk from "chalk";
 const keys = require("../config/keys");
 const { database } = keys;
 
+mongoose.set('strictQuery', true)
+
 const setupDB = async () => {
   try {
     mongoose

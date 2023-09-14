@@ -14,7 +14,7 @@ export const useCreateOrderMutation = () =>
       taxPrice: number;
       totalPrice: number;
     }) =>
-      (await apiClient.post<{ message: string; order: Order }>(`order`, order))
+      (await apiClient.post<{ message: string; order: Order }>(`order/createOrder`, order))
         .data,
   });
 
@@ -34,3 +34,12 @@ export const usePayOrderMutation = () =>
         )
       ).data,
   });
+
+  export const useGetOrderHistoryQuery = () =>
+  useQuery({
+   queryKey: ['orderHistory'],
+   queryFn: async () =>
+     (
+       await apiClient.get<Order[]>(`order`)
+     ).data,
+  })

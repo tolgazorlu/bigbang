@@ -1,6 +1,17 @@
-import { Request, Response } from "express";
-import { Product } from "../models/products";
-import { Order, OrderModel } from "../models/order";
+import express, { Request, Response } from 'express'
+import { Order, OrderModel } from '../models/order'
+import { Product } from '../models/products'
+
+module.exports.getOrderHistory = async (req: Request, res: Response) => {
+    const orders = await OrderModel.find({})
+    
+    if (orders) {
+        res.json(orders)
+    } else {
+        res.status(404).send({ message: 'Order Not Found' })
+    }
+}
+
 
 module.exports.createOrder = async (req: Request, res: Response) => {
     if (req.body.orderItems.length === 0) {
@@ -21,32 +32,26 @@ module.exports.createOrder = async (req: Request, res: Response) => {
         } as Order)
         res
             .status(201)
-            .send({ message: 'Order Found', order: createdOrder })
+            .json({ message: 'Order Found', order: createdOrder })
     }
 }
 
 module.exports.getOrder = async (req: Request, res: Response) => {
     const order = await OrderModel.findById(req.params.id)
     if (order) {
-        res.send(order)
+        res.json(order)
     } else {
         res.status(404).send({ message: 'Order Not Found' })
     }
 }
 
 module.exports.payOrder = async (req: Request, res: Response) => {
-    
+
     const order = await OrderModel.findById(req.params.id).populate('user')
 
     if (order) {
         order.isPaid = true
         order.paidAt = new Date(Date.now())
-        order.paymentResult = {
-            paymentId: req.body.id,
-            status: req.body.status,
-            update_time: req.body.update_time,
-            email_address: req.body.email_address,
-        }
         const updatedOrder = await order.save()
 
         res.send(updatedOrder)

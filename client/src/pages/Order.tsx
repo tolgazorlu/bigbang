@@ -33,7 +33,7 @@ export default function Order() {
     toast.success("Order is paid");
   };
 
-  const { mutateAsync: payOrder, isLoading: loadingPay } =
+  const { mutateAsync: payOrder} =
     usePayOrderMutation();
 
   return isLoading ? (

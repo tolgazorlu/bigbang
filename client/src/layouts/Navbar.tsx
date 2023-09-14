@@ -111,20 +111,6 @@ export default function Navbar() {
                     </a>
                   </div>
                 </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -192,38 +178,38 @@ export default function Navbar() {
 
               <div className="ml-auto flex items-center">
                 {location === "/shop" ? (
-                  <form className="mr-4">
-                    <div className="relative flex gap-1">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg
-                          className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 20 20"
+                  <form>
+                    <div className="flex">
+                      <div className="relative w-full">
+                        <input
+                          type="search"
+                          id="search-dropdown"
+                          className="block p-1.5 w-[40vh] z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                          placeholder="Search"
+                          required
+                        />
+                        <button
+                          type="submit"
+                          className="absolute top-0 right-0 p-2 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                          />
-                        </svg>
+                          <svg
+                            className="w-3 h-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                            />
+                          </svg>
+                          <span className="sr-only">Search</span>
+                        </button>
                       </div>
-                      <input
-                        type="search"
-                        id="default-search"
-                        className="block w-full py-1.5 px-24 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-                        placeholder="Search Product."
-                        required
-                      />
-                      <button
-                        type="submit"
-                        className="text-white right-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5"
-                      >
-                        Search
-                      </button>
                     </div>
                   </form>
                 ) : (
@@ -243,7 +229,7 @@ export default function Navbar() {
                         <Menu.Button>
                           <img
                             alt="User dropdown"
-                            className="w-6 h-6 rounded-full mt-4 ring ring-blue-700"
+                            className="w-6 h-6 rounded-full mt-2 ring ring-blue-700"
                             src={userInfo.avatar}
                           />
                         </Menu.Button>
@@ -300,8 +286,25 @@ export default function Navbar() {
                                   </Menu.Item>
                                 </Link>
                               ) : (
-                                <></>
+                                <Link to="/order/history" className="w-full">
+                                  <Menu.Item>
+                                    {({ active }) => (
+                                      <button
+                                        type="submit"
+                                        className={classNames(
+                                          active
+                                            ? "bg-gray-100 text-gray-900"
+                                            : "text-gray-700",
+                                          "block w-full px-4 py-2 text-left text-sm"
+                                        )}
+                                      >
+                                        Order History
+                                      </button>
+                                    )}
+                                  </Menu.Item>
+                                </Link>
                               )}
+
                               <Link to="/profile" className="w-full">
                                 <Menu.Item>
                                   {({ active }) => (
