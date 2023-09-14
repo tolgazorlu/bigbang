@@ -181,8 +181,10 @@ Use this space to list resources you find helpful and would like to give credit 
 * [Eslint](https://eslint.org/)
 * [React Router Dom](https://reactrouter.com/en/main)
 * [React Context](https://react.dev/reference/react/useContext)
+* [React Query](https://tanstack.com/query/v3/)
 * [DaisyUI](https://daisyui.com/)
 * [Flowbite](https://flowbite.com/)
+
 
 
 
