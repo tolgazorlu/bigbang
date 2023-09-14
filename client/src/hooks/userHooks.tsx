@@ -43,7 +43,27 @@ export const useRegisterMutation = () =>
           email,
           phoneNumber,
           password,
-          avatar
+          avatar,
+        })
+      ).data,
+  });
+
+export const useUpdateProfileMutation = () =>
+  useMutation({
+    mutationFn: async ({
+      firstName,
+      lastName,
+      email,
+    }: {
+      firstName: string;
+      lastName: string;
+      email: string;
+    }) =>
+      (
+        await apiClient.put<UserInfo>(`/user/profile`, {
+          firstName,
+          lastName,
+          email,
         })
       ).data,
   });

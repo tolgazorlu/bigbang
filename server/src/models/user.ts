@@ -37,4 +37,4 @@ export class User{
     public isAdmin!: boolean
 }
 
-export const userModel = getModelForClass(User)
+export const UserModel = getModelForClass(User)

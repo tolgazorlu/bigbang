@@ -3,7 +3,7 @@ import { Order, OrderModel } from '../models/order'
 import { Product } from '../models/products'
 
 module.exports.getOrderHistory = async (req: Request, res: Response) => {
-    const orders = await OrderModel.find({})
+    const orders = await OrderModel.find({user: req.user._id})
     
     if (orders) {
         res.json(orders)

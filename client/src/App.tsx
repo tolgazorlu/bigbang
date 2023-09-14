@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PlaceOrderPage from "./pages/PlaceOrder";
 import Order from "./pages/Order";
 import OrderHistory from "./pages/OrderHistory";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="" element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
           <Route path="/shipping" element={<ShippingAddressPage />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/placeorder" element={<PlaceOrderPage />} />
