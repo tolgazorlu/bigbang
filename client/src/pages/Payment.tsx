@@ -54,16 +54,17 @@ export default function Payment() {
                     checked={paymentMethodName === "PayPal"}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="hidden peer"
-                    required
                   />
                   <label
+                    htmlFor="PayPal"
                     className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     <div className="block">
-                      <div className="w-full text-lg font-semibold">
-                        Paypal
+                      <div className="w-full text-lg font-semibold">PayPal</div>
+                      <div className="w-full">
+                        Transfer money online in seconds with PayPal money
+                        transfer.
                       </div>
-                      <div className="w-full">Transfer money online in seconds with PayPal money transfer.</div>
                     </div>
                     <svg
                       className="w-5 h-5 ml-3"
@@ -74,9 +75,9 @@ export default function Payment() {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
@@ -92,13 +93,14 @@ export default function Payment() {
                     className="hidden peer"
                   />
                   <label
+                    htmlFor="Stripe"
                     className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     <div className="block">
-                      <div className="w-full text-lg font-semibold">
-                        Stripe
+                      <div className="w-full text-lg font-semibold">Stripe</div>
+                      <div className="w-full">
+                        Payment takes a very small 1.2% fee on every charge.
                       </div>
-                      <div className="w-full">Payment takes a very small 1.2% fee on every charge.</div>
                     </div>
                     <svg
                       className="w-5 h-5 ml-3"

@@ -24,6 +24,7 @@ const OrderHistory = () => {
         </a>
       </div>
       <hr className="h-px bg-gray-500 w-full" />
+      <br />
       {isLoading ? (
         <Loading />
       ) : error ? (
