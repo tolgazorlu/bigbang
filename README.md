@@ -85,6 +85,35 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
   <a><img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/></a>
 </p>
 
+<!-- Features -->
+## Features
+
+- [x] Parallax Page
+- [x] Register to Bigbang
+- [x] Login to Bigbang
+- [x] List Products
+- [x] Add products to Cart
+- [x] Change products in Cart
+- [x] Edit item quantity in Cart
+- [x] Choose payment method
+- [x] Edit shipping information
+- [x] Edit items in place order
+- [x] Edit payment method
+- [x] Test pay for products
+- [x] Order products
+- [x] List Order History
+- [x] User profile edit
+- [ ] New features coming soon
+    - [ ] SearchBox and categories filter
+    - [ ] Admin Dashboard Page
+    - [ ] Checking strong password for user registration
+    - [ ] Upload user avatar
+    - [ ] About Page
+    - [ ] Deployed to web services
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- GETTING STARTED -->
 
 ## Getting Started
