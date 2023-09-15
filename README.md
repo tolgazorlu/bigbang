@@ -28,6 +28,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#technologies">Technologies</a></li>
+        <li><a href="#features">Features</a></li>
       </ul>
     </li>
     <li>
@@ -84,6 +85,8 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
   <a><img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"/></a>
   <a><img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"/></a>
 </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Features -->
 ## Features
