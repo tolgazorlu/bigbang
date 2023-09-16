@@ -14,6 +14,7 @@ import PlaceOrderPage from "./pages/PlaceOrder";
 import Order from "./pages/Order";
 import OrderHistory from "./pages/OrderHistory";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:slug" element={<SingleProduct />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="" element={<ProtectedRoute />}>

@@ -1,5 +1,5 @@
-import { Response, Request } from 'express'
-import { ProductModel } from '../models/products'
+import { Response, Request, NextFunction } from 'express'
+import { Product, ProductModel } from '../models/products'
 
 exports.createProduct = async (req: Request, res: Response) => {
     try {
@@ -52,4 +52,34 @@ exports.getProduct = async (req: Request, res: Response) => {
             'success': 'fail'
         })
     }
+}
+
+exports.getCategory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const categories = await ProductModel.find().distinct('category')
+        res.send(categories)
+    } catch (error) {
+        res.status(404).json({ "message": error })
+    }
+}
+
+exports.getSearchProducts = async (req: Request, res: Response) => {
+    const searchQuery = req.query.query || ''
+    const category = (req.query.category || '') as string
+
+    const queryFilter =
+      searchQuery && searchQuery !== 'all'
+        ? {
+            name: {
+              $regex: searchQuery,
+              $options: 'i',
+            },
+          }
+        : {}
+
+        const categoryFilter = category && category !== 'all' ? { category } : {}
+
+    const products = await ProductModel.find({ ...queryFilter, ...categoryFilter })
+
+    res.send(products)
 }
