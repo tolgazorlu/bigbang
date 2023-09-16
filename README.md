@@ -106,8 +106,8 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
 - [x] Order products
 - [x] List Order History
 - [x] User profile edit
+- [x] SearchBox and categories filter
 - [ ] New features coming soon
-    - [ ] SearchBox and categories filter
     - [ ] Admin Dashboard Page
     - [ ] Checking strong password for user registration
     - [ ] Upload user avatar
