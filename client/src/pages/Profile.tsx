@@ -13,7 +13,7 @@ const Profile = () => {
   const [lastName, setLastName] = useState(userInfo!.lastName);
   const [email, setEmail] = useState(userInfo!.email);
 
-  const { mutateAsync: updateProfile, isLoading } = useUpdateProfileMutation();
+  const { mutateAsync: updateProfile } = useUpdateProfileMutation();
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();

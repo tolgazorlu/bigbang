@@ -1,0 +1,16 @@
+{
+  "name": "bigbang",
+  "version": "1.0.0",
+  "description": "<a name=\"readme-top\"></a>",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd server && npm --force install  && npm run build  && cd ../client && npm install && npm run build",
+    "start": "TG_ALLOW_MIXED=ALLOW  node server/build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

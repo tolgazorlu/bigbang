@@ -1,7 +1,8 @@
 //IMPORTS
 require('dotenv').config();
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import chalk from 'chalk';
+import path from 'path'
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 //ROUTE IMPORTS
@@ -37,7 +38,13 @@ app.use('/product', productRoute);
 app.use('/user', authRoute)
 app.use('/order', orderRoute)
 
+app.use(express.static(path.join(__dirname, '../../client/dist')))
+app.get('*', (req: Request, res: Response) =>
+  res.sendFile(path.join(__dirname, '../../client/dist/index.html'))
+)
+
 //LISTEN
+
 app.listen(port, () => {
   console.log(`Port is running on ${chalk.blue(port)}`);
 })

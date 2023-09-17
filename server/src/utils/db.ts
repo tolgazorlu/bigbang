@@ -4,14 +4,12 @@ import chalk from "chalk";
 const keys = require("../config/keys");
 const { database } = keys;
 
-mongoose.set('strictQuery', true)
-
 const setupDB = async () => {
   try {
-    mongoose
+    await mongoose
       .connect(database.url, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
+        useUnifiedTopology: true
       } as ConnectOptions)
       .then(() => {
         console.log(chalk.bgGreen("MongoDB Database connected!"));
