@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cd server && npm --force install  && npm run build  && cd ../client && npm install && npm run build",
-    "start": "TG_ALLOW_MIXED=ALLOW  node server/build/index.js",
+    "start": "TG_ALLOW_MIXED=ALLOW  cd server/build && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
