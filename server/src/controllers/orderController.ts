@@ -1,12 +1,27 @@
 import express, { Request, Response } from 'express'
 import { Order, OrderModel } from '../models/order'
 import { Product } from '../models/products'
+import mongoose from 'mongoose'
+
+
+module.exports.getSummary = async (req: Request, res: Response) => {
+    const orders = await OrderModel.aggregate([
+        {
+            $group: {
+                _id: null,
+                numOrders: { $sum: 1 },
+                totalSales: { $sum: '$totalPrice' }
+            }
+        }
+    ])
+
+    res.send(orders)
+}
 
 module.exports.getOrderHistory = async (req: Request, res: Response) => {
-    const orders = await OrderModel.find({user: req.user._id})
-    
+    const orders = await OrderModel.find({ user: req.user._id })
     if (orders) {
-        res.json(orders)
+        res.send(orders)
     } else {
         res.status(404).send({ message: 'Order Not Found' })
     }

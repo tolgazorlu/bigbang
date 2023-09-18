@@ -178,15 +178,10 @@ export default function Navbar() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                {location !== "/" ? (
-                  <Searchbox />
-                ) : (
-                  <></>
-                )}
+                {location !== "/" ? <Searchbox /> : <></>}
                 {userInfo ? (
                   <>
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                      
                       <Menu
                         as="div"
                         className="relative inline-block text-left"
@@ -194,7 +189,7 @@ export default function Navbar() {
                         <Menu.Button>
                           <img
                             alt="User dropdown"
-                            className="w-6 h-6 rounded-full mt-2 ring ring-blue-700"
+                            className="w-6 h-6 rounded-full mt-2"
                             src={userInfo.avatar}
                           />
                         </Menu.Button>

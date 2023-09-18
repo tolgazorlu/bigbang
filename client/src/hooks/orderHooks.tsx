@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { CartItem, ShippingAddress } from "../types/Cart";
 import { Order } from "../types/Order";
 import apiClient from "../utils/apiClient";
+import axios from "axios";
 
 export const useCreateOrderMutation = () =>
   useMutation({
@@ -14,8 +15,12 @@ export const useCreateOrderMutation = () =>
       taxPrice: number;
       totalPrice: number;
     }) =>
-      (await apiClient.post<{ message: string; order: Order }>(`order/createOrder`, order))
-        .data,
+      (
+        await apiClient.post<{ message: string; order: Order }>(
+          `order/createOrder`,
+          order
+        )
+      ).data,
   });
 
 export const useGetOrderDetailsQuery = (id: string) =>
@@ -35,11 +40,19 @@ export const usePayOrderMutation = () =>
       ).data,
   });
 
-  export const useGetOrderHistoryQuery = () =>
+export const useGetOrderHistoryQuery = () =>
   useQuery({
-   queryKey: ['orderHistory'],
-   queryFn: async () =>
-     (
-       await apiClient.get<Order[]>(`order`)
-     ).data,
+    queryKey: ["order/history"],
+    queryFn: async () => (await apiClient.get<Order[]>('order/history')).data,
+  });
+
+  export const useGetOrderSummaryQuery = () =>
+  useQuery({
+    queryKey: ['orders-summary'],
+    queryFn: async () =>
+      (
+        await apiClient.get<{
+          orders: [{ numOrders: number; totalSales: number }]
+        }>('order/summary')
+      ).data,
   })

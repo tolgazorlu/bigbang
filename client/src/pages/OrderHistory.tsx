@@ -10,6 +10,12 @@ import { ApiError } from "../types/ApiError";
 const OrderHistory = () => {
   const navigate = useNavigate();
   const { data: orders, isLoading, error } = useGetOrderHistoryQuery();
+
+  if(!isLoading){
+    console.log(orders)
+  }
+  
+
   return (
     <div className="sm:px-14 bg-white">
       <Helmet>

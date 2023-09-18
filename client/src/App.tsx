@@ -15,6 +15,8 @@ import Order from "./pages/Order";
 import OrderHistory from "./pages/OrderHistory";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import AdminRoute from "./components/AdminRoute";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (
@@ -29,6 +31,9 @@ const App = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="" element={<AdminRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
         <Route path="" element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/shipping" element={<ShippingAddressPage />} />

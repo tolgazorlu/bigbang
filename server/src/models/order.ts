@@ -1,6 +1,7 @@
 import { modelOptions, prop, getModelForClass, Ref } from '@typegoose/typegoose'
 import { Product } from './products'
 import { User } from './user'
+import mongoose from 'mongoose'
 
 class ShippingAddress {
   @prop()
@@ -35,7 +36,7 @@ class Item {
 }
 
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({ schemaOptions: { timestamps: true }})
 export class Order {
   public _id!: string
   @prop()

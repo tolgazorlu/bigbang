@@ -1,34 +1,29 @@
 import Card from "../components/Product/Card";
-import {
-  useGetProductsQuery,
-} from "../hooks/productHooks";
+import { useGetProductsQuery } from "../hooks/productHooks";
 import { getError } from "../utils/getError";
 import { ApiError } from "../types/ApiError";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { Product } from "../types/ProductType";
-import { useContext } from "react";
-import { Store } from "../contexts/Store";
 import Footer from "../layouts/Footer";
-
 
 export default function Shop() {
   const { data: products, isLoading, error } = useGetProductsQuery();
 
-  const { state } = useContext(Store);
-  const { userInfo } = state;
 
   return (
     <div className="bg-white">
       <div>
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-12">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              {userInfo
-                ? `New collections for ${userInfo.firstName} ${userInfo.lastName}`
-                : "New collections"}
+          <div className="font-poppins flex flex-col gap-3 items-baseline justify-between border-b border-gray-200 py-16">
+            <h1 className="text-4xl font-extrabold text-gray-900">
+              New collection
             </h1>
-
+            <p className="text-lg text-gray-500">
+              We not only help you design exceptional products, but also make it
+              easy for you <br />
+              to share your designs with more like-minded people.
+            </p>
           </div>
 
           <section aria-labelledby="products-heading" className="pb-24 pt-6">
