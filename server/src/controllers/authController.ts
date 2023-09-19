@@ -97,6 +97,21 @@ module.exports.getUsers = async (req: Request, res: Response) => {
         const users = await UserModel.find({});
         res.status(200).send(users)
     } catch (error) {
-        res.status(400).json({message: 'Sometwing went wrong!'})
+        res.status(400).json({ message: 'Sometwing went wrong!' })
+    }
+}
+
+module.exports.deleteUser = async (req: Request, res: Response) => {
+    const user = await UserModel.findById(req.params.id)
+    if (user) {
+        if (user.email === 'tolga@mail.com') {
+            res.status(400).send({ message: 'You can not delete admin account!' })
+            return
+        }
+        const deletedUser = await user.deleteOne()
+        res.json({ message: 'success', user: deletedUser})
+    }
+    else {
+        res.status(404).send({ message: 'User not found!' })
     }
 }
