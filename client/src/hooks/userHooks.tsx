@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { UserInfo } from "../types/UserInfo";
 import apiClient from "../utils/apiClient";
 
@@ -66,4 +66,10 @@ export const useUpdateProfileMutation = () =>
           email,
         })
       ).data,
+  });
+
+  export const useGetUsersQuery = () =>
+  useQuery({
+    queryKey: ["users"],
+    queryFn: async () => (await apiClient.get<[]>(`user/allUsers`)).data,
   });

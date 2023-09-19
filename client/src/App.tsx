@@ -17,6 +17,8 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import AdminRoute from "./components/AdminRoute";
 import Dashboard from "./pages/Dashboard";
+import DashboardProducts from "./pages/DashboardProducts";
+import DashboardUsers from "./pages/DashboardUsers";
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="" element={<AdminRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/products" element={<DashboardProducts />} />
+          <Route path="/dashboard/users" element={<DashboardUsers />} />
         </Route>
         <Route path="" element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />

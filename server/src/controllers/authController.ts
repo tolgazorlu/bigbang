@@ -91,3 +91,12 @@ module.exports.Profile = async (req: Request, res: Response) => {
         res.json({ "message": error })
     }
 }
+
+module.exports.getUsers = async (req: Request, res: Response) => {
+    try {
+        const users = await UserModel.find({});
+        res.status(200).send(users)
+    } catch (error) {
+        res.status(400).json({message: 'Sometwing went wrong!'})
+    }
+}

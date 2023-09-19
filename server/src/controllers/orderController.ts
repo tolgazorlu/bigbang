@@ -7,15 +7,15 @@ import mongoose from 'mongoose'
 module.exports.getSummary = async (req: Request, res: Response) => {
     const orders = await OrderModel.aggregate([
         {
-            $group: {
-                _id: null,
-                numOrders: { $sum: 1 },
-                totalSales: { $sum: '$totalPrice' }
-            }
-        }
-    ])
+          $group: {
+            _id: null,
+            numOrders: { $sum: 1 },
+            totalSales: { $sum: '$totalPrice' },
+          },
+        },
+      ])
 
-    res.send(orders)
+    res.send({orders})
 }
 
 module.exports.getOrderHistory = async (req: Request, res: Response) => {
