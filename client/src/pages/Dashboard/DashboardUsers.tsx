@@ -98,7 +98,6 @@ const DashboardUsers = () => {
                             {user.createdAt.substring(0, 10)}
                           </td>
                           <td>
-                            {/* Open the modal using document.getElementById('ID').showModal() method */}
                             <button className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold" onClick={()=>{document.getElementById('my_modal_5').showModal(); setChooseUser(user._id)}}>Delete</button>
                             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                               <div className="modal-box">

@@ -1,16 +1,56 @@
-import React from "react";
+import { useState } from "react";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { getError } from "../../utils/getError";
 import { ApiError } from "../../types/ApiError";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ToastContainer } from "react-toastify";
-import { useGetProductsQuery } from "../../hooks/productHooks";
+import { ToastContainer, toast } from "react-toastify";
+import { useCreateProductMutation, useGetProductsQuery } from "../../hooks/productHooks";
 import Sidebar from "../../components/Sidebar";
 
+export type NewProduct = {
+  name: string, 
+  slug: string, 
+  category: string, 
+  detail: string, 
+  image: string, 
+  rating: number, 
+  price: number, 
+  age: number
+}
+
 const DashboardProducts = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const { mutateAsync: createProduct, isLoading: loadingProduct } = useCreateProductMutation()
+
+  const [name, setName] = useState<string>("")
+  const [slug, setSlug] = useState<string>("")
+  const [category, setCategory] = useState<string>("")
+  const [detail, setDetail] = useState<string>("")
+  const [image, setImage] = useState<string>("")
+  const [rating, setRating] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0)
+  const [age, setAge] = useState<number>(0)
+
+
+  const createProductHandler = async (e: Event) => {
+    try {
+      await createProduct({
+        name: name,
+        slug: slug,
+        category: category,
+        detail: detail,
+        image: image,
+        rating: rating,
+        price: price,
+        age: age,
+      })
+      refetch()
+    }
+    catch(err){
+      console.log(getError(err as ApiError))
+    }
+  }
 
   return (
     <>
@@ -34,20 +74,206 @@ const DashboardProducts = () => {
 
         <div className="p-4 col-span-9">
           <ul>
+          {loadingProduct && <Loading></Loading>}
             {isLoading ? (
               <Loading />
             ) : error ? (
               <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
             ) : (
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg font-poppins">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
-                    Our products
+                    Products
                     <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                       Browse a list of Flowbite products designed to help you
                       work and play, stay organized, get answers, keep in touch,
                       grow your business, and more.
                     </p>
+                    {/* ADD PRODUCT */}
+                    <button
+                      className="btn btn-sm float-right bg-blue-500 text-white hover:bg-blue-200 hover:text-black hover:font-bold"
+                      onClick={() => {
+                        document.getElementById("defaultModal").showModal();
+                      }}
+                    >
+                      add product
+                    </button>
+                    <dialog id="defaultModal" className="modal">
+                        {/* <!-- Modal content --> */}
+                        <div className="modal-box">
+                          {/* <!-- Modal header --> */}
+                          <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                              Add Product
+                            </h3>
+                            <button
+                              type="button"
+                              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                              onClick={() => {
+                                document.getElementById("defaultModal").close();
+                              }}
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  clipRule="evenodd"
+                                ></path>
+                              </svg>
+                              <span className="sr-only">Close modal</span>
+                            </button>
+                          </div>
+
+                          {/* FORM */}
+
+                          <form action="#">
+                            <div className="grid gap-4 mb-4 sm:grid-cols-2">
+                              <div>
+                                <label
+                                  htmlFor="name"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Name
+                                </label>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  id="name"
+                                  value={name}
+                                  onChange={(e) => setName(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="Type product name"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="slug"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Slug
+                                </label>
+                                <input
+                                  type="text"
+                                  name="slug"
+                                  id="slug"
+                                  value={slug}
+                                  onChange={(e) => setSlug(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="Product slug"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="price"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Price
+                                </label>
+                                <input
+                                  type="number"
+                                  name="price"
+                                  id="price"
+                                  value={price}
+                                  onChange={(e) => setPrice(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="$2999"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="category"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Category
+                                </label>
+                                <select
+                                  id="category"
+                                  value={category}
+                                  onChange={(e) => setCategory(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                >
+                                  <option>Select category</option>
+                                  <option value="planet">Planet</option>
+                                  <option value="star">Star</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="rating"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Rating
+                                </label>
+                                <input
+                                  type="number"
+                                  name="rating"
+                                  id="rating"
+                                  value={rating}
+                                  onChange={(e) => setRating(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="4.4"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="age"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Age
+                                </label>
+                                <input
+                                  type="number"
+                                  value={age}
+                                  onChange={(e) => setAge(e.target.value)}
+                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="1239"
+                                />
+                              </div>
+                              <div className="sm:col-span-2">
+                                <label
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Image
+                                </label>
+                                <input
+                                  value={image}
+                                  onChange={(e) => setImage(e.target.value)}
+                                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="Write product description here"
+                                ></input>
+                              </div>
+                              <div className="sm:col-span-2">
+                                <label
+                                  htmlFor="description"
+                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Detail
+                                </label>
+                                <textarea
+                                  id="description"
+                                  rows={4}
+                                  value={detail}
+                                  onChange={(e) => setDetail(e.target.value)}
+                                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder="Write product description here"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <button
+                              className="float-right btn btn-sm bg-green-500 text-white hover:bg-green-200 hover:text-black hover:font-bold"
+                              onClick={(e) => createProductHandler(e)}
+                            >
+                              + Add Product
+                            </button>
+                          </form>
+                        </div>
+                    </dialog>
                   </caption>
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
@@ -71,7 +297,7 @@ const DashboardProducts = () => {
                   <tbody>
                     {products!.map((product) => {
                       return (
-                        <tr className="bg-white border-b ">
+                        <tr className="bg-white border-b" key={product._id}>
                           <th
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -82,18 +308,26 @@ const DashboardProducts = () => {
                           <td className="px-6 py-4">{product.rating}</td>
                           <td className="px-6 py-4">{product.price}</td>
                           <td className="px-6 py-4 flex gap-2">
-                            <a
-                              href="#"
-                              className="font-medium text-blue-600  hover:underline"
+                            <button
+                              className="btn btn-sm bg-blue-500 text-white hover:bg-blue-200 hover:text-black hover:font-bold"
+                              onClick={() => {
+                                document
+                                  .getElementById("my_modal_1")
+                                  .showModal();
+                              }}
                             >
                               Edit
-                            </a>
-                            <a
-                              href="#"
-                              className="font-medium text-red-600  hover:underline"
+                            </button>
+                            <button
+                              className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold"
+                              onClick={() => {
+                                document
+                                  .getElementById("my_modal_2")
+                                  .showModal();
+                              }}
                             >
-                              Remove
-                            </a>
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       );
