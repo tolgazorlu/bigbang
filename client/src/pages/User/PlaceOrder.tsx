@@ -1,48 +1,58 @@
-import { useContext } from "react";
-import { Store } from "../contexts/Store";
-import { Link, useParams } from "react-router-dom";
-import Loading from "../components/Loading";
-import ErrorMessage from "../components/ErrorMessage";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
-import {
-  useGetOrderDetailsQuery,
-  usePayOrderMutation,
-} from "../hooks/orderHooks";
-import { Helmet } from "react-helmet-async";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Store } from "../../contexts/Store";
+import { useCreateOrderMutation } from "../../hooks/orderHooks";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 import { ToastContainer, toast } from "react-toastify";
-import Footer from "../layouts/Footer";
+import CheckoutSteps from "../../components/CheckoutSteps";
+import { Helmet } from "react-helmet-async";
+import Footer from "../../layouts/Footer";
+import { CartItem } from "../../types/Cart";
 
-export default function Order() {
-  const { state } = useContext(Store);
-  const { cart } = state;
+export default function PlaceOrderPage() {
+  const navigate = useNavigate()
 
-  const params = useParams();
-  const { id: orderId } = params;
+  const { state, dispatch } = useContext(Store)
+  const { cart } = state
 
-  const {
-    data: order,
-    isLoading,
-    error,
-    refetch,
-  } = useGetOrderDetailsQuery(orderId!);
+  const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100 // 123.2345 => 123.23
 
-  const testPayHandler = () => {
-    payOrder({ orderId: orderId! });
-    refetch();
-    toast.success("Order is paid");
-  };
+  cart.itemsPrice = round2(
+    cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+  )
+  cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10)
+  cart.taxPrice = round2(0.15 * cart.itemsPrice)
+  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
 
-  const { mutateAsync: payOrder} =
-    usePayOrderMutation();
+  const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation()
 
-  return isLoading ? (
-    <Loading />
-  ) : error ? (
-    <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
-  ) : !order ? (
-    <ErrorMessage>Order Not Found</ErrorMessage>
-  ) : (
+  const placeOrderHandler = async () => {
+    try {
+      const data = await createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+      dispatch({ type: 'CART_CLEAR' })
+      localStorage.removeItem('cartItems')
+      navigate(`/order/${data.order._id}`)
+    } catch (err) {
+      toast.error(getError(err as ApiError))
+    }
+  }
+
+  useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate('/payment')
+    }
+  }, [cart, navigate])
+
+  return (
     <div className="sm:px-14 bg-white">
       <ToastContainer
         position="top-right"
@@ -58,15 +68,16 @@ export default function Order() {
       />
 
       <Helmet>
-        <title>Order</title>
+        <title>Preview Order</title>
       </Helmet>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <a
           href="#"
           className="font-space flex items-center mb-6 text-2xl font-semibold text-gray-700 mt-12"
         >
-          Order
+          Place Order
         </a>
+        <CheckoutSteps step1 step2 step3 step4 />
       </div>
       <hr className="h-px bg-gray-500 w-7/12" />
       <div className="grid lg:grid-cols-12 gap-5">
@@ -88,9 +99,7 @@ export default function Order() {
             </span>
             <br />
             <br />
-            <span className="p-5 btn-sm flex items-center justify-center bg-yellow-200 text-black w-full rounded-md font-bold">
-              NOT DELIVERED
-            </span>
+            <Link to="/shipping">Edit</Link>
           </div>
           <div className="py-8 w-full border-b-[1px] border-gray-500">
             <span className="text-gray-700 text-xl font-bold">
@@ -103,21 +112,13 @@ export default function Order() {
             </span>
             <br />
             <br />
-            {order.isPaid ? (
-              <span className="p-5 btn-sm flex items-center justify-center bg-green-200 text-black w-full rounded-md font-bold">
-                PAID
-              </span>
-            ) : (
-              <span className="p-5 btn-sm flex items-center justify-center bg-yellow-200 text-black w-full rounded-md font-bold">
-                NOT PAID
-              </span>
-            )}
+            <Link to="/payment">Edit</Link>
           </div>
           <div className="py-8 w-full border-b-[1px] border-gray-500">
             <span className="text-gray-700 text-xl font-bold">ITEMS</span>
             <br />
             <ul>
-              {order.orderItems.map((item) => (
+              {cart.cartItems.map((item: CartItem) => (
                 <li key={item._id} className="py-8 w-full border-gray-500">
                   <div className="h-full w-full flex">
                     <img
@@ -145,6 +146,7 @@ export default function Order() {
                   </div>
                 </li>
               ))}
+              <Link to="/shop">Edit</Link>
             </ul>
           </div>
         </div>
@@ -173,18 +175,14 @@ export default function Order() {
               </li>
             </ul>
             <div className="h-1/6 px-8">
-              {order.isPaid ? (
-                <></>
-              ) : (
-                <button
-                  type="button"
-                  onClick={testPayHandler}
-                  className="p-5 btn-sm flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white w-full rounded-md font-bold"
-                >
-                  Test Pay
-                </button>
-              )}
-
+              <button
+                type="button"
+                onClick={placeOrderHandler}
+                disabled={cart.cartItems.length === 0 || isLoading}
+                className="p-5 btn-sm flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white w-full rounded-md font-bold"
+              >
+                Place Order
+              </button>
               <Link
                 className="p-2 btn-sm flex items-center justify-center text-blue-500 w-full rounded-md"
                 to={"/shop"}

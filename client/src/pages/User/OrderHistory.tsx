@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet-async";
-import Footer from "../layouts/Footer";
-import { useGetOrderHistoryQuery } from "../hooks/orderHooks";
+import Footer from "../../layouts/Footer";
+import { useGetOrderHistoryQuery } from "../../hooks/orderHooks";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
-import ErrorMessage from "../components/ErrorMessage";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 
 const OrderHistory = () => {
   const navigate = useNavigate();

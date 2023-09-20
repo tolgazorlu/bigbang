@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Store } from "../contexts/Store";
-import { useUpdateProfileMutation } from "../hooks/userHooks";
+import { Store } from "../../contexts/Store";
+import { useUpdateProfileMutation } from "../../hooks/userHooks";
 import { toast } from "react-toastify";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 
 const Profile = () => {
   const { state, dispatch } = useContext(Store);

@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Store } from "../contexts/Store";
-import { CartItem } from "../types/Cart";
+import { Store } from "../../contexts/Store";
+import { CartItem } from "../../types/Cart";
 import { Helmet } from "react-helmet-async";
-import Footer from "../layouts/Footer";
+import Footer from "../../layouts/Footer";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
-import EmptyCart from "../assets/animation/cart.json";
+import EmptyCart from "../../assets/animation/cart.json";
 import Lottie from "lottie-react";
 
 const ShoppingCart = () => {

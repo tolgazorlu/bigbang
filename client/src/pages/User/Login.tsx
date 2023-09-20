@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Store } from "../contexts/Store";
-import { useLoginMutation } from "../hooks/userHooks";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
+import { Store } from "../../contexts/Store";
+import { useLoginMutation } from "../../hooks/userHooks";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Login = () => {

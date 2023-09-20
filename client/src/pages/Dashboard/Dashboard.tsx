@@ -1,12 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
-import { useGetOrderSummaryQuery } from "../hooks/orderHooks";
-import Loading from "../components/Loading";
-import ErrorMessage from "../components/ErrorMessage";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
+import { useGetOrderSummaryQuery } from "../../hooks/orderHooks";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 import { Link } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 const Dashboard = () => {
   const { data: summary, isLoading, error } = useGetOrderSummaryQuery();

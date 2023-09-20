@@ -1,13 +1,13 @@
 import React from "react";
-import Loading from "../components/Loading";
-import ErrorMessage from "../components/ErrorMessage";
-import { getError } from "../utils/getError";
-import { ApiError } from "../types/ApiError";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import { getError } from "../../utils/getError";
+import { ApiError } from "../../types/ApiError";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
-import { useGetProductsQuery } from "../hooks/productHooks";
-import Sidebar from "../components/Sidebar";
+import { useGetProductsQuery } from "../../hooks/productHooks";
+import Sidebar from "../../components/Sidebar";
 
 const DashboardProducts = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();

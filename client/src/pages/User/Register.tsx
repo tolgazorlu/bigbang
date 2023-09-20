@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { FormEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UserForm from "../components/Register/UserForm";
-import { useMultistepForm } from "../utils/useMultistepForm";
-import ValidationForm from "../components/Register/ValidationForm";
+import UserForm from "../../components/Register/UserForm";
+import { useMultistepForm } from "../../utils/useMultistepForm";
+import ValidationForm from "../../components/Register/ValidationForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
