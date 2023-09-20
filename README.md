@@ -91,29 +91,49 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
 <!-- Features -->
 ## Features
 
-- [x] Parallax Page
-- [x] Register to Bigbang
-- [x] Login to Bigbang
-- [x] List Products
-- [x] Add products to Cart
-- [x] Change products in Cart
-- [x] Edit item quantity in Cart
-- [x] Choose payment method
-- [x] Edit shipping information
-- [x] Edit items in place order
-- [x] Edit payment method
-- [x] Test pay for products
-- [x] Order products
-- [x] List Order History
-- [x] User profile edit
-- [x] SearchBox and categories filter
-- [x] Admin Dashboard Page
-    - [x] User List
-    - [x] User Delete
+
+- [x] Pages
+    - [x] Home (Parallax Page)
+    - [x] Register to Bigbang
+    - [x] Login to Bigbang
+    - [x] Shop
+    - [x] 404 Not Found
+    - [x] Search
+    - [x] Single Product
+    - [x] Shopping Cart
+    - [x] Place Order
+    - [x] Shipping Address
+    - [x] Payment
+    - [x] Order
+    - [x] Dashboard
+        - [x] User
+        - [x] Product
+    - [x] User
+        - [x] Profile
+        - [x] Order History
+- [x] Features
+    - [x] User Register
+    - [x] User Login
+    - [x] Product add to Cart
+    - [x] Shipping information add to Order
+    - [x] Payment choose for Order (Test payment method for temporary)
+    - [x] Order products
+    - [x] Test pay for products
+    - [x] List Order History
+    - [x] Edit User Profile
+    - [x] SearchBox and Categories filtering
+    - [x] Admin Dashboard Page (only admin access)
+        - [x] User List
+        - [x] User Delete
+        - [x] Product List
+        - [x] Add new product
+        - [x] Update product
+        - [x] Delete product
 - [ ] New features coming soon
     - [ ] Checking strong password for user registration
-    - [ ] Upload user avatar
+    - [ ] Upload user avatar to any cloud service
     - [ ] About Page
+    - [ ] Contact Page
     - [ ] Deployed to web services
 
 

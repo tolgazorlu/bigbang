@@ -96,3 +96,23 @@ exports.deleteProduct = async (req: Request, res: Response) => {
         res.status(404).send({message: error})
     }
 }
+
+module.exports.updateProduct = async (req: Request, res: Response) => {
+    try {
+        const product = await ProductModel.findById(req.params.id)
+        if (product) {
+            product.name = req.body.name || product.name
+            product.slug = req.body.slug || product.slug
+            product.category = req.body.category || product.category
+            product.detail = req.body.detail || product.detail
+            product.image = req.body.image || product.image
+            product.rating = req.body.rating || product.rating
+            product.price = req.body.price || product.price
+            product.age = req.body.age || product.age
+            const updatedProduct = await product.save()
+            res.send({updatedProduct})
+        }
+    } catch (error) {
+        res.json({ "message": error })
+    }
+}
