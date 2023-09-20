@@ -5,7 +5,7 @@ import { getError } from "../../utils/getError";
 import { ApiError } from "../../types/ApiError";
 import { Helmet } from "react-helmet-async";
 import { ToastContainer, toast } from "react-toastify";
-import { useCreateProductMutation, useGetProductsQuery } from "../../hooks/productHooks";
+import { useCreateProductMutation, useDeleteProductMutation, useGetProductsQuery } from "../../hooks/productHooks";
 import Sidebar from "../../components/Sidebar";
 
 export type NewProduct = {
@@ -22,6 +22,7 @@ export type NewProduct = {
 const DashboardProducts = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
   const { mutateAsync: createProduct, isLoading: loadingProduct } = useCreateProductMutation()
+  const { mutateAsync: deleteProduct, isLoading: loadingDeleteProduct } = useDeleteProductMutation()
 
   const [name, setName] = useState<string>("")
   const [slug, setSlug] = useState<string>("")
@@ -31,6 +32,8 @@ const DashboardProducts = () => {
   const [rating, setRating] = useState<number>(0)
   const [price, setPrice] = useState<number>(0)
   const [age, setAge] = useState<number>(0)
+
+  const [deleteProductId, setDeleteProductId] = useState<string>("")
 
 
   const createProductHandler = async (e: Event) => {
@@ -49,6 +52,16 @@ const DashboardProducts = () => {
     }
     catch(err){
       console.log(getError(err as ApiError))
+    }
+  }
+
+  const deleteProductHandler = async (id: string) => {
+    try {
+      await deleteProduct(id)
+      refetch
+      toast.success('Product deleted!')
+    } catch (error) {
+      toast.error(getError(error as ApiError))
     }
   }
 
@@ -318,16 +331,19 @@ const DashboardProducts = () => {
                             >
                               Edit
                             </button>
-                            <button
-                              className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold"
-                              onClick={() => {
-                                document
-                                  .getElementById("my_modal_2")
-                                  .showModal();
-                              }}
-                            >
-                              Delete
-                            </button>
+                            <button className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold" onClick={()=>{document.getElementById('my_modal_1').showModal(); setDeleteProductId(product._id)}}>Delete</button>
+                            <dialog id="my_modal_1" className="modal modal-bottom sm:modal-middle">
+                              <div className="modal-box">
+                                <h3 className="font-bold text-lg">Attention!</h3>
+                                <p className="py-4">Do you want to delete this product? You can not take it back the process!</p>
+                                <div className="modal-action">
+                                  <form className="flex">
+                                    <button className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" onClick={() => deleteProductHandler(deleteProductId)}>Delete</button>
+                                    <button className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </dialog>
                           </td>
                         </tr>
                       );

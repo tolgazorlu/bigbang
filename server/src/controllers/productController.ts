@@ -83,3 +83,16 @@ exports.getSearchProducts = async (req: Request, res: Response) => {
 
     res.send(products)
 }
+
+exports.deleteProduct = async (req: Request, res: Response) => {
+    try {
+        const product = await ProductModel.findById(req.params.id)
+        if(product){
+            const deletedProduct = await product.deleteOne()
+            res.status(200).send({message: 'success', product: deletedProduct})
+        }
+        res.status(404).send({message: 'Product not found!'})
+    } catch (error) {
+        res.status(404).send({message: error})
+    }
+}
