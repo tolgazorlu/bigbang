@@ -1,4 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
+if (!Object.hasOwn) {
+  Object.hasOwn = (obj, key) => {
+    typeof typeof obj === "object" && obj.hasOwnProperty(key);
+  };
+}
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -22,5 +29,8 @@ export default {
       "poppins-sb": "PoppinsSB",
     },
   },
-  plugins: [require("daisyui"), require("@tailwindcss/aspect-ratio", require('@tailwindcss/forms'))],
+  plugins: [
+    require("daisyui"),
+    require("@tailwindcss/aspect-ratio", require("@tailwindcss/forms")),
+  ],
 };
