@@ -349,7 +349,7 @@ const DashboardProducts = () => {
                           <th className="flex justify-center items-center">
                             <img
                               src={product.image}
-                              className="h-12 w-12 mt-8"
+                              className="h-16 w-16 p-2"
                             />
                           </th>
                           <th
@@ -361,7 +361,7 @@ const DashboardProducts = () => {
                           <td className="px-6 py-4">{product.category}</td>
                           <td className="px-6 py-4">{product.rating}</td>
                           <td className="px-6 py-4">{product.price}</td>
-                          <td className="px-6 py-4 flex gap-2">
+                          <td className="">
                             {/* EDIT */}
 
                             <button

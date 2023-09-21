@@ -189,7 +189,7 @@ export default function Navbar() {
                         <Menu.Button>
                           <img
                             alt="User dropdown"
-                            className="w-6 h-6 rounded-full mt-2"
+                            className={userInfo.isAdmin ? "w-7 h-7 rounded-full mt-2 ring ring-yellow-500" :  "w-7 h-7 rounded-full mt-2 ring ring-blue-500"}
                             src={userInfo.avatar}
                           />
                         </Menu.Button>
@@ -219,7 +219,7 @@ export default function Navbar() {
                                     <div>
                                       <img
                                         alt="User dropdown"
-                                        className="w-10 h-10 rounded-full ring ring-blue-700"
+                                        className={userInfo.isAdmin ? "w-10 h-10 rounded-full ring-4 ring-yellow-500" : "w-10 h-10 rounded-full ring-4 ring-blue-500"}
                                         src={userInfo.avatar}
                                       />
                                     </div>
@@ -307,7 +307,8 @@ export default function Navbar() {
                         </Transition>
                       </Menu>
                     </div>
-                    <div className="ml-4 flow-root lg:ml-6">
+                    {userInfo.isAdmin ? <></> : (
+                      <div className="ml-4 flow-root lg:ml-6">
                       <Link
                         to="/cart"
                         className="group -m-2 flex items-center p-2"
@@ -340,6 +341,7 @@ export default function Navbar() {
                         <span className="sr-only">items in cart, view bag</span>
                       </Link>
                     </div>
+                    )}
                   </>
                 ) : (
                   <>

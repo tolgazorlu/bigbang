@@ -2,10 +2,6 @@ const Footer = () => {
   return (
     <footer className="footer p-10 text-slate-700 font-poppins">
       <div className="flex items-center gap-4">
-        <img
-          className="h-12 animate-spin"
-          src="https://imageupload.io/ib/uyxtA4y1d1wcLgK_1693993204.png"
-        />
         <p className="flex flex-col">
           <span className="text-gray-700 font-bold font-space">
             BIGBANG TEAM

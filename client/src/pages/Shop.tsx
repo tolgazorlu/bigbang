@@ -17,7 +17,7 @@ export default function Shop() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="font-poppins flex flex-col gap-3 items-baseline justify-between border-b border-gray-200 py-16">
             <h1 className="text-4xl font-extrabold text-gray-900">
-              New collection
+              New collection: The Solar System
             </h1>
             <p className="text-lg text-gray-500">
               We not only help you design exceptional products, but also make it
