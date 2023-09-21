@@ -2,8 +2,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { CartItem, ShippingAddress } from "../types/Cart";
 import { Order } from "../types/Order";
 import apiClient from "../utils/apiClient";
-import axios from "axios";
-import { Product } from "../types/ProductType";
 
 export const useCreateOrderMutation = () =>
   useMutation({

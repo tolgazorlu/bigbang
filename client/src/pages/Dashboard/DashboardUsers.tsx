@@ -98,7 +98,7 @@ const DashboardUsers = () => {
                             {user.createdAt.substring(0, 10)}
                           </td>
                           <td>
-                            <button className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold" onClick={()=>{document.getElementById('my_modal_5').showModal(); setChooseUser(user._id)}}>Delete</button>
+                            <button className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold" onClick={()=>{ let el: any = document.getElementById('my_modal_5')!; el.showModal(); setChooseUser(user._id)}}>Delete</button>
                             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                               <div className="modal-box">
                                 <h3 className="font-bold text-lg">Attention!</h3>

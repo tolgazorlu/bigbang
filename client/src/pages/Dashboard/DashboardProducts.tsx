@@ -73,7 +73,7 @@ const DashboardProducts = () => {
     }
   };
 
-  const editProductHandler = async (id: string) => {
+  const editProductHandler = async () => {
     try {
       await updateProduct({
         id: editProductId,
@@ -136,9 +136,9 @@ const DashboardProducts = () => {
                     <button
                       className="btn btn-sm float-right bg-blue-500 text-white hover:bg-blue-200 hover:text-black hover:font-bold"
                       onClick={() => {
-                        document
-                          .getElementById("add-product-modal")
-                          .showModal();
+                        let el: any =
+                          document.getElementById("add-product-modal")!;
+                        el.showModal();
                       }}
                     >
                       add product
@@ -155,9 +155,9 @@ const DashboardProducts = () => {
                             type="button"
                             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                             onClick={() => {
-                              document
-                                .getElementById("add-product-modal")
-                                .close();
+                              let el: any =
+                                document.getElementById("add-product-modal")!;
+                              el.close();
                             }}
                           >
                             <svg
@@ -227,7 +227,7 @@ const DashboardProducts = () => {
                                 name="price"
                                 id="price"
                                 value={price}
-                                onChange={(e) => setPrice(e.target.value)}
+                                onChange={(e) => setPrice(parseInt(e.target.value))}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="$2999"
                               />
@@ -262,7 +262,7 @@ const DashboardProducts = () => {
                                 name="rating"
                                 id="rating"
                                 value={rating}
-                                onChange={(e) => setRating(e.target.value)}
+                                onChange={(e) => setRating(parseInt(e.target.value))}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="4.4"
                               />
@@ -277,7 +277,7 @@ const DashboardProducts = () => {
                               <input
                                 type="number"
                                 value={age}
-                                onChange={(e) => setAge(e.target.value)}
+                                onChange={(e) => setAge(parseInt(e.target.value))}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="1239"
                               />
@@ -367,9 +367,8 @@ const DashboardProducts = () => {
                             <button
                               className="btn btn-sm bg-blue-500 text-white hover:bg-blue-200 hover:text-black hover:font-bold"
                               onClick={() => {
-                                document
-                                  .getElementById("edit-product-modal")
-                                  .showModal();
+                                let el: any = document.getElementById("edit-product-modal")!
+                                  el.showModal();
                                 setEditProductId(product._id);
                               }}
                             >
@@ -388,9 +387,8 @@ const DashboardProducts = () => {
                                     type="button"
                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                     onClick={() => {
-                                      document
-                                        .getElementById("edit-product-modal")
-                                        .close();
+                                      let el: any = document.getElementById("edit-product-modal")!
+                                        el.close();
                                     }}
                                   >
                                     <svg
@@ -463,7 +461,7 @@ const DashboardProducts = () => {
                                         id="price"
                                         value={product.price}
                                         onChange={(e) =>
-                                          setPrice(e.target.value)
+                                          setPrice(parseInt(e.target.value))
                                         }
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="$2999"
@@ -502,7 +500,7 @@ const DashboardProducts = () => {
                                         id="rating"
                                         value={product.rating}
                                         onChange={(e) =>
-                                          setRating(e.target.value)
+                                          setRating(parseInt(e.target.value))
                                         }
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="4.4"
@@ -518,7 +516,7 @@ const DashboardProducts = () => {
                                       <input
                                         type="number"
                                         value={product.age}
-                                        onChange={(e) => setAge(e.target.value)}
+                                        onChange={(e) => setAge(parseInt(e.target.value))}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="1239"
                                       />
@@ -557,9 +555,11 @@ const DashboardProducts = () => {
                                   </div>
                                   <button
                                     className="float-right btn btn-sm bg-green-500 text-white hover:bg-green-200 hover:text-black hover:font-bold"
-                                    onClick={() => {editProductHandler(); document
-                                      .getElementById("edit-product-modal")
-                                      .close();}}
+                                    onClick={() => {
+                                      editProductHandler();
+                                      let el: any = document.getElementById("edit-product-modal")!
+                                        el.close();
+                                    }}
                                   >
                                     Edit Product
                                   </button>
@@ -571,9 +571,8 @@ const DashboardProducts = () => {
                             <button
                               className="btn btn-sm bg-red-500 text-white hover:bg-red-200 hover:text-black hover:font-bold"
                               onClick={() => {
-                                document
-                                  .getElementById("my_modal_1")
-                                  .showModal();
+                                let el: any = document.getElementById("my_modal_1")!
+                                  el.showModal();
                                 setDeleteProductId(product._id);
                               }}
                             >

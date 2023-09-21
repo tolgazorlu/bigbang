@@ -91,7 +91,6 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
 <!-- Features -->
 ## Features
 
-
 - [x] Pages
     - [x] Home (Parallax Page)
     - [x] Register to Bigbang
@@ -135,7 +134,6 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
     - [ ] About Page
     - [ ] Contact Page
     - [ ] Deployed to web services
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -209,7 +207,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- CONTACT -->
 ## Contact
 
@@ -238,10 +235,5 @@ Use this space to list resources you find helpful and would like to give credit 
 * [React Query](https://tanstack.com/query/v3/)
 * [DaisyUI](https://daisyui.com/)
 * [Flowbite](https://flowbite.com/)
-
-
-
-
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
