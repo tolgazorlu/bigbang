@@ -77,14 +77,16 @@ module.exports.Profile = async (req: Request, res: Response) => {
             user.firstName = req.body.firstName || user.firstName
             user.lastName = req.body.lastName || user.lastName
             user.email = req.body.email || user.email
+            user.avatar = req.body.avatar || user.avatar
+            user.phoneNumber = req.body.phoneNumber || user.phoneNumber
             const updatedUser = await user.save()
             res.send({
                 _id: updatedUser._id,
                 firstName: updatedUser.firstName,
                 lastName: updatedUser.lastName,
                 email: updatedUser.email,
-                isAdmin: updatedUser.isAdmin,
-                token: generateToken(updatedUser),
+                avatar: updatedUser.avatar,
+                phoneNumber: updatedUser.phoneNumber,
             })
         }
     } catch (error) {

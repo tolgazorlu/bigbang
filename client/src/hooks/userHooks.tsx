@@ -55,16 +55,22 @@ export const useUpdateProfileMutation = () =>
       firstName,
       lastName,
       email,
+      avatar,
+      phoneNumber
     }: {
       firstName: string;
       lastName: string;
       email: string;
+      avatar: string;
+      phoneNumber: string;
     }) =>
       (
         await apiClient.put<UserInfo>(`/user/profile`, {
           firstName,
           lastName,
           email,
+          avatar,
+          phoneNumber
         })
       ).data,
   });
