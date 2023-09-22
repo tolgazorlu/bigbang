@@ -51,7 +51,8 @@ export const useGetOrderSummaryQuery = () =>
     queryFn: async () =>
       (
         await apiClient.get<{
-          orders: [{ numOrders: number; totalSales: number }];
+          orders: [{ numOrders: number; totalSales: number;  }];
+          newOrders: [{notDelevired: number}]
         }>("order/summary")
       ).data,
   });

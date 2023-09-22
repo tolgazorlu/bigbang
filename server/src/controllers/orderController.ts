@@ -3,8 +3,8 @@ import { Order, OrderModel } from '../models/order'
 import { Product } from '../models/products'
 import mongoose from 'mongoose'
 
-
 module.exports.getSummary = async (req: Request, res: Response) => {
+    
     const orders = await OrderModel.aggregate([
         {
           $group: {
@@ -15,7 +15,16 @@ module.exports.getSummary = async (req: Request, res: Response) => {
         },
       ])
 
-    res.send({orders})
+      const newOrders = await OrderModel.aggregate([
+        {
+            $group: {
+                _id: null,
+                notDelevired: { $sum: { $cond: [ { $eq: [ "$isDelivered", false ] }, 1, 0 ] }}
+            }
+        }
+      ])
+
+    res.send({orders, newOrders})
 }
 
 module.exports.getOrderHistory = async (req: Request, res: Response) => {

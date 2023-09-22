@@ -1,6 +1,28 @@
+import { useGetOrderSummaryQuery } from "../hooks/orderHooks";
+import { ApiError } from "../types/ApiError";
+import { getError } from "../utils/getError";
+import ErrorMessage from "./ErrorMessage";
+import Loading from "./Loading";
+
 const Sidebar = () => {
+  const {
+    data: summary,
+    isLoading,
+    error
+  } = useGetOrderSummaryQuery();
+
+  if(summary){
+    console.log(summary)
+  }
+
   return (
-    <aside
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : error ? (
+        <ErrorMessage>{getError(error as ApiError)}</ErrorMessage>
+      ) : (
+        <aside
           id="default-sidebar"
           className="border-r-2 col-span-3"
           aria-label="Sidebar"
@@ -25,7 +47,7 @@ const Sidebar = () => {
                   <span className="ml-3">Dashboard</span>
                 </a>
               </li>
-              
+
               <li>
                 <a
                   href="/dashboard/newOrders"
@@ -40,10 +62,14 @@ const Sidebar = () => {
                   >
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                   </svg>
-                  <span className="flex-1 ml-3 whitespace-nowrap">New Orders</span>
-                  <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full ">
-                    3
+                  <span className="flex-1 ml-3 whitespace-nowrap">
+                    New Orders
                   </span>
+                  <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-green-800 bg-green-100 rounded-full ">
+                    {summary!.orders
+                      ? summary!.newOrders[0].notDelevired
+                      : 0}
+                    </span>
                 </a>
               </li>
               <li>
@@ -85,7 +111,9 @@ const Sidebar = () => {
             </ul>
           </div>
         </aside>
-  )
-}
+      )}
+    </>
+  );
+};
 
-export default Sidebar
+export default Sidebar;
