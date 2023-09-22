@@ -6,7 +6,8 @@ const {Register, Login, Profile, getUsers, deleteUser} = require('../controllers
 const {UserVerification} = require('../middlewares/authMiddleware')
 const router: Router = require('express').Router()
 
-router.get('/', isAuth, isAdmin, getUsers)
+router.post('/', UserVerification)
+router.get('/all', isAuth, isAdmin, getUsers)
 router.post('/register', Register)
 router.post('/login', Login)
 router.put('/profile', isAuth, Profile)

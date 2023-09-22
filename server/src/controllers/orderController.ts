@@ -4,27 +4,27 @@ import { Product } from '../models/products'
 import mongoose from 'mongoose'
 
 module.exports.getSummary = async (req: Request, res: Response) => {
-    
-    const orders = await OrderModel.aggregate([
-        {
-          $group: {
-            _id: null,
-            numOrders: { $sum: 1 },
-            totalSales: { $sum: '$totalPrice' },
-          },
-        },
-      ])
 
-      const newOrders = await OrderModel.aggregate([
+    const orders = await OrderModel.aggregate([
         {
             $group: {
                 _id: null,
-                notDelevired: { $sum: { $cond: [ { $eq: [ "$isDelivered", false ] }, 1, 0 ] }}
+                numOrders: { $sum: 1 },
+                totalSales: { $sum: '$totalPrice' },
+            },
+        },
+    ])
+
+    const newOrders = await OrderModel.aggregate([
+        {
+            $group: {
+                _id: null,
+                notDelevired: { $sum: { $cond: [{ $eq: ["$isDelivered", false] }, 1, 0] } }
             }
         }
-      ])
+    ])
 
-    res.send({orders, newOrders})
+    res.send({ orders, newOrders })
 }
 
 module.exports.getOrderHistory = async (req: Request, res: Response) => {
@@ -36,13 +36,13 @@ module.exports.getOrderHistory = async (req: Request, res: Response) => {
     }
 }
 
-module.exports.getOrders = async (req:Request, res: Response) => {
+module.exports.getOrders = async (req: Request, res: Response) => {
     const orders = await OrderModel.find({})
-    if(orders){
+    if (orders) {
         res.send(orders)
     }
-    else{
-        res.status(404).send({message: 'Orders not found!'})
+    else {
+        res.status(404).send({ message: 'Orders not found!' })
     }
 }
 
@@ -61,11 +61,9 @@ module.exports.createOrder = async (req: Request, res: Response) => {
             shippingPrice: req.body.shippingPrice,
             taxPrice: req.body.taxPrice,
             totalPrice: req.body.totalPrice,
-            user: req.user._id
-        } as Order)
-        res
-            .status(201)
-            .json({ message: 'Order Found', order: createdOrder })
+            user: req.user._id,
+        })
+        res.status(201).send({ message: 'Order Not Found', order: createdOrder })
     }
 }
 

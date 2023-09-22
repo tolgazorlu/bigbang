@@ -28,14 +28,12 @@ export const useRegisterMutation = () =>
       email,
       phoneNumber,
       password,
-      avatar,
     }: {
       firstName: string;
       lastName: string;
       email: string;
       phoneNumber: string;
       password: string;
-      avatar: string;
     }) =>
       (
         await apiClient.post<UserInfo>(`/user/register`, {
@@ -43,8 +41,7 @@ export const useRegisterMutation = () =>
           lastName,
           email,
           phoneNumber,
-          password,
-          avatar,
+          password
         })
       ).data,
   });
@@ -78,7 +75,7 @@ export const useUpdateProfileMutation = () =>
 export const useGetUsersQuery = () =>
   useQuery({
     queryKey: ["users"],
-    queryFn: async () => (await apiClient.get<User[]>(`user`)).data,
+    queryFn: async () => (await apiClient.get<User[]>(`user/all`)).data,
   });
 
   export const useDeleteUserMutation = () =>
