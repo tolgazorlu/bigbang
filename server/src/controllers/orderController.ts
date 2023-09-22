@@ -27,6 +27,15 @@ module.exports.getOrderHistory = async (req: Request, res: Response) => {
     }
 }
 
+module.exports.getOrders = async (req:Request, res: Response) => {
+    const orders = await OrderModel.find({})
+    if(orders){
+        res.send(orders)
+    }
+    else{
+        res.status(404).send({message: 'Orders not found!'})
+    }
+}
 
 module.exports.createOrder = async (req: Request, res: Response) => {
     if (req.body.orderItems.length === 0) {
@@ -69,6 +78,20 @@ module.exports.payOrder = async (req: Request, res: Response) => {
         order.paidAt = new Date(Date.now())
         const updatedOrder = await order.save()
 
+        res.send(updatedOrder)
+    } else {
+        res.status(404).send({ message: 'Order Not Found' })
+    }
+}
+
+module.exports.deliverOrder = async (req: Request, res: Response) => {
+
+    const order = await OrderModel.findById(req.params.id)
+
+    if (order) {
+        order.isDelivered = !order.isDelivered
+        order.deliveredAt = new Date(Date.now())
+        const updatedOrder = await order.save()
         res.send(updatedOrder)
     } else {
         res.status(404).send({ message: 'Order Not Found' })

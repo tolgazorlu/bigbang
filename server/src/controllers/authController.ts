@@ -21,7 +21,7 @@ module.exports.Register = async (req: Request, res: Response, next: NextFunction
             })
             return user
         }
-        const newUser = await addUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.email, req.body.password, req.body.avatar)
+        const newUser = await addUser(req.body.firstName, req.body.lastName, req.body.phoneNumber, req.body.email, bcrypt.hashSync(req.body.password, 12), req.body.avatar)
         res
             .status(201)
             .json({

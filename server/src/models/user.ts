@@ -2,15 +2,6 @@ import { getModelForClass, modelOptions, pre, prop } from "@typegoose/typegoose"
 import bcrypt from 'bcrypt'
 import chalk from "chalk";
 
-@pre<User>('save', async function () {
-    try {
-        this.password = await bcrypt.hash(this.password, 12)
-        console.log(`${chalk.bgBlue('Password bcrypt is done!')}`)
-    } catch (error) {
-        console.log(`${chalk.bgGreen(error)}`)
-    }
-})
-
 @modelOptions({schemaOptions: {timestamps: true}})
 export class User{
     public _id?: string

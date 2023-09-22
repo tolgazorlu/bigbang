@@ -42,17 +42,32 @@ export const usePayOrderMutation = () =>
 export const useGetOrderHistoryQuery = () =>
   useQuery({
     queryKey: ["order/history"],
-    queryFn: async () => (await apiClient.get<Order[]>('order/history')).data,
+    queryFn: async () => (await apiClient.get<Order[]>("order/history")).data,
   });
 
-  export const useGetOrderSummaryQuery = () =>
+export const useGetOrderSummaryQuery = () =>
   useQuery({
-    queryKey: ['orders-summary'],
+    queryKey: ["orders-summary"],
     queryFn: async () =>
       (
         await apiClient.get<{
-          orders: [{ numOrders: number; totalSales: number }]
-        }>('order/summary')
+          orders: [{ numOrders: number; totalSales: number }];
+        }>("order/summary")
       ).data,
-  })
+  });
 
+export const useGetOrdersQuery = () =>
+  useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => (await apiClient.get<Order[]>(`order/all`)).data,
+  });
+
+  export const useDeliverOrderMutation = () =>
+  useMutation({
+    mutationFn: async ( orderId: string ) =>
+      (
+        await apiClient.put<{ message: string; order: Order }>(
+          `order/${orderId}/deliver`
+        )
+      ).data,
+  });

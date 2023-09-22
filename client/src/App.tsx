@@ -19,6 +19,7 @@ import AdminRoute from "./components/User/AdminRoute";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardProducts from "./pages/Dashboard/DashboardProducts";
 import DashboardUsers from "./pages/Dashboard/DashboardUsers";
+import DashboardNewOrders from "./pages/Dashboard/DashboardNewOrders";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/products" element={<DashboardProducts />} />
           <Route path="/dashboard/users" element={<DashboardUsers />} />
+          <Route path="/dashboard/newOrders" element={<DashboardNewOrders />} />
         </Route>
         <Route path="" element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
