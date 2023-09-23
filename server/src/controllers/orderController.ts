@@ -37,7 +37,7 @@ module.exports.getOrderHistory = async (req: Request, res: Response) => {
 }
 
 module.exports.getOrders = async (req: Request, res: Response) => {
-    const orders = await OrderModel.find({})
+    const orders = await OrderModel.find({}).sort('-createdAt');
     if (orders) {
         res.send(orders)
     }
