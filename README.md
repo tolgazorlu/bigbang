@@ -128,12 +128,15 @@ We implemented the **BigBang** application using **React, NodeJS, Express, Mongo
         - [x] Add new product
         - [x] Update product
         - [x] Delete product
+        - [x] New Order List
+        - [x] Order Deliver or delivery cancel
+    - [x] Deployed to web services
 - [ ] New features coming soon
     - [ ] Checking strong password for user registration
     - [ ] Upload user avatar to any cloud service
     - [ ] About Page
     - [ ] Contact Page
-    - [ ] Deployed to web services
+    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
