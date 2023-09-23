@@ -12,7 +12,7 @@
   <p align="center">
     MERN STACK E-COMMERCE PROJECT
     <br />
-    <a href="https://github.com/tolgazorlu/bigbang"><strong>View Demo (Soon)</strong></a>
+    <a href="https://bigbang-2o69.onrender.com"><strong>View Demo</strong></a>
     <br />
     <br />
     <a href="https://github.com/tolgazorlu/bigbang/issues">Report Bug</a>
