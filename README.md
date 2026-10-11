@@ -53,6 +53,8 @@
 
 We implemented the **BigBang** application using **React, NodeJS, Express, MongoDB, Typescript, Tailwind** technologies. **Bigbang** is an imaginary e-commerce project where you can buy planets, stars, meteorites from every point of the universe, somewhere in the future.
 
+Built 2023-07 to 2023-09 as a full MERN stack practice project (client, server and auth all implemented from scratch).
+
 ### Türkçe
 
 **React, NodeJS, Express, MongoDB, Typescript, Tailwind** teknolojilerini kullanarak **BigBang** uygulamasını geliştirdim. **Bigbang** bir e-ticaret projesidir.
@@ -184,6 +186,13 @@ _Below is an example of how you can instruct your audience on installing and set
    npm install
    npm run dev
    ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- STATUS -->
+## Status
+
+Learning/portfolio project, not actively maintained.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
